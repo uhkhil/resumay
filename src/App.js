@@ -15,8 +15,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/view">
-          <Resume mode={'VIEW'} />
+        <Route path="/view/:userId" render={props => <Resume mode={'VIEW'} {...props} />}>
         </Route>
         <Route path="/creator" render={props => <Resume mode={'EDIT'} {...props} />}>
         </Route>

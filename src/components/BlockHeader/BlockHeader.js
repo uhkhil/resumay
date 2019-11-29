@@ -8,11 +8,11 @@ export class BlockHeader extends React.Component {
 
     render() {
         return (
-            <div>
-                <h2>{this.props.title}</h2>
+            <div className='row'>
+                <h4 className='five columns'>{this.props.title}</h4>
                 {
                     this.props.mode === 'EDIT' || true ?
-                        <span onClick={this.edit}>Edit</span> : null
+                        <button className='three columns u-pull-right' onClick={this.edit}>Edit</button> : null
                 }
             </div>
         )

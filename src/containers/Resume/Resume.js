@@ -3,6 +3,8 @@ import { Profile } from '../../components/Profile/Profile';
 import { Tags } from '../../components/Tags/Tags';
 import { Bio } from '../../components/Bio/Bio';
 import { Experience } from '../../components/Experience/Experience';
+import { useParams } from "react-router-dom";
+
 
 import { API } from '../../services/API';
 import { Auth } from '../../services/Auth';
@@ -17,7 +19,11 @@ export class Resume extends React.Component {
             if (!session) {
                 console.log('Redirect to login.')
                 props.history.push('/');
+                return;
             }
+            this.userId = Auth.user().uid;
+        } else {
+            this.userId = this.props.match.params.userId;
         }
         this.state = {
             profileData: {},
@@ -32,7 +38,7 @@ export class Resume extends React.Component {
     }
 
     fetchResume = async () => {
-        const userId = 'b';
+        const userId = this.userId;
         const result = await API.fetchResume(userId)
         if (result.data && result.status) {
             const data = result.data.resource[0];
@@ -58,7 +64,7 @@ export class Resume extends React.Component {
     }
 
     update = async data => {
-        const userId = 'b';
+        const userId = this.userId;
         const result = await API.updateResume(userId, data);
         if (result.data && result.data.status) {
             if (data.image) {
@@ -87,7 +93,7 @@ export class Resume extends React.Component {
 
     view = () => {
         // TODO: Open in new tab
-        this.props.history.push('/view');
+        this.props.history.push('/view/' + this.userId);
     }
 
     renderHeader = () => {
@@ -105,7 +111,7 @@ export class Resume extends React.Component {
 
     render() {
         return (
-            <div className="">
+            <div className="resume-container">
                 {
                     this.props.mode === 'EDIT' ? this.renderHeader() : null
                 }

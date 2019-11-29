@@ -7,9 +7,12 @@ const endpoints = {
 
 const fetchResume = (userId) => axios.get(baseUrl + endpoints.resume, { params: { userId } })
 
+const createResume = (userId, data) => axios.post(baseUrl + endpoints.resume, data, { params: { userId } })
+
 const updateResume = (userId, data) => axios.patch(baseUrl + endpoints.resume, data, { params: { userId } })
 
 export const API = {
     fetchResume,
+    createResume,
     updateResume
 }

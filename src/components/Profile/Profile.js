@@ -26,10 +26,10 @@ export class Profile extends React.Component {
             <form onSubmit={this.submit}>
                 <label htmlFor='image'>Image</label>
                 <input type='text' name='image' required defaultValue={this.props.data.image} />
-                <label htmlFor='first'>First Name</label>
-                <input type='text' name='first' required defaultValue={this.props.data.firstName} />
-                <label htmlFor='last'>Last Name</label>
-                <input type='text' name='last' required defaultValue={this.props.data.lastName} />
+                <label htmlFor='firstName'>First Name</label>
+                <input type='text' name='firstName' required defaultValue={this.props.data.firstName} />
+                <label htmlFor='lastName'>Last Name</label>
+                <input type='text' name='lastName' required defaultValue={this.props.data.lastName} />
                 <label htmlFor='email'>Email</label>
                 <input type='text' name='email' required defaultValue={this.props.data.email} />
                 <label htmlFor='phone'>Phone</label>
@@ -53,13 +53,13 @@ export class Profile extends React.Component {
         const data = this.props.data
         return (
             <div className='block profile-container'>
-                <img src={data.image} className='image' alt="profile" />
-                <button type='button' onClick={this.toggleEditModal}>Edit</button>
-                <h4>{data.firstName} {data.lastName}</h4>
+                <img src={data.image} className='image tac' alt="profile" />
+                <h4 className='tac'>{data.firstName} {data.lastName}</h4>
                 <hr />
-                <h4>{data.email}</h4>
-                <h4>{data.phone}</h4>
-                <h4>{data.city}, {data.country}</h4>
+                <button type='button u-pull-right' onClick={this.toggleEditModal}>Edit</button>
+                <h5 className='p0 m0'>{data.email}</h5>
+                <h5 className='p0 m0'>{data.phone}</h5>
+                <h5 className='p0 m0'>{data.city}, {data.country}</h5>
                 {this.renderModal()}
             </div>
         )
