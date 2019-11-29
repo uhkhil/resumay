@@ -6,9 +6,12 @@ export class Project extends React.Component {
         return (
             <div className='block'>
                 <h5>{project.projectName}</h5>
-                <ul>
-                    {project.skills.map(skill => <li>{skill.display}</li>)}
-                </ul>
+                {
+                    project.skills ?
+                        <ul>
+                            {project.skills.map((skill, idx) => <li key={idx}>{skill.display}</li>)}
+                        </ul> : null
+                }
                 <p>{project.description}</p>
             </div>
         )

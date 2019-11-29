@@ -12,7 +12,7 @@ export class Company extends React.Component {
                 {company.projects.length ? (
                     <div>
                         <h5>Projects</h5>
-                        {company.projects.map(project => <Project data={project} />)}
+                        {company.projects.map((project, idx) => <Project key={idx} data={project} />)}
                     </div>
                 ) : null}
             </div>

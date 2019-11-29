@@ -9,7 +9,7 @@ export class Tags extends React.Component {
         return (
             <div className="block tags-container">
                 <BlockHeader title='Hightlights' />
-                {tags.map(tag => <Tag _id={tag._id} value={tag.value} />)}
+                {tags.map((tag, idx) => <Tag key={idx} _id={tag._id} value={tag.value} />)}
             </div>
         )
     }
