@@ -8,7 +8,6 @@ const subcribeAuthStateChange = () => {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             loggedIn = true
-            console.log('TCL: checkSession -> user', user);
         } else {
             loggedIn = false;
             console.log('no user')
@@ -26,10 +25,9 @@ const login = async () => {
         const provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
         const result = await firebase.auth().signInWithPopup(provider)
-        var token = result.credential.accessToken;
-        console.log('TCL: login -> token', token);
-        var user = result.user;
-        console.log('TCL: login -> user', user);
+        const token = result.credential.accessToken;
+        const user = result.user;
+        // TODO: Inform server if just signed up
         return true;
     } catch (err) {
         console.error(err);

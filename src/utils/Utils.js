@@ -4,6 +4,5 @@ export const JSONifyFormData = (formData) => {
         console.log(pair[0] + ', ' + pair[1]);
         obj[pair[0]] = pair[1]
     }
-    console.log('TCL: JSONifyFormData -> obj', obj);
     return obj;
 }

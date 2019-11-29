@@ -25,7 +25,19 @@ export class Profile extends React.Component {
         return <Modal title='Profile Overview' isOpen={this.state.isOpen} close={this.toggleEditModal} submit={this.submit}>
             <form onSubmit={this.submit}>
                 <label htmlFor='image'>Image</label>
-                <input type='text' name='image' required defaultValue={this.state.profileData.image} />
+                <input type='text' name='image' required defaultValue={this.props.data.image} />
+                <label htmlFor='first'>First Name</label>
+                <input type='text' name='first' required defaultValue={this.props.data.firstName} />
+                <label htmlFor='last'>Last Name</label>
+                <input type='text' name='last' required defaultValue={this.props.data.lastName} />
+                <label htmlFor='email'>Email</label>
+                <input type='text' name='email' required defaultValue={this.props.data.email} />
+                <label htmlFor='phone'>Phone</label>
+                <input type='text' name='phone' required defaultValue={this.props.data.phone} />
+                <label htmlFor='city'>City</label>
+                <input type='text' name='city' required defaultValue={this.props.data.city} />
+                <label htmlFor='country'>Country</label>
+                <input type='text' name='country' required defaultValue={this.props.data.country} />
                 <button type='submit'>Submit</button>
             </form>
         </Modal>

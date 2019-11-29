@@ -20,7 +20,6 @@ export class Bio extends React.Component {
     submit = async (event) => {
         event.preventDefault();
         const data = JSONifyFormData(new FormData(event.target))
-        console.log('TCL: Bio -> submit -> data', data);
         const updated = await this.props.update(data)
         if (updated) {
             this.toggleEditModal();
@@ -53,7 +52,6 @@ export class Bio extends React.Component {
 
     render() {
         const bio = this.props.data
-        console.log('TCL: Bio -> render -> this.props', this.props);
         return (
             <div className="block">
                 <BlockHeader title='Profile Overview' mode={this.props.mode} edit={this.toggleEditModal} />

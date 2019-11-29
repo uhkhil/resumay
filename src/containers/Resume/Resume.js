@@ -10,7 +10,8 @@ import { Auth } from '../../services/Auth';
 export class Resume extends React.Component {
     constructor(props) {
         super(props);
-        // TODO: Figure out way to call this when page called everytime
+        // TODO: Figure out way to call this when page called everytime.
+        // TODO: Figure out issue when no session on refresh.
         if (props.mode === 'EDIT') {
             const session = Auth.checkSession();
             if (!session) {
@@ -60,6 +61,9 @@ export class Resume extends React.Component {
         const userId = 'b';
         const result = await API.updateResume(userId, data);
         if (result.data && result.data.status) {
+            if (data.image) {
+                this.setState({ profileData: data })
+            }
             if (data.bio) {
                 this.setState({ bio: data.bio })
             }
