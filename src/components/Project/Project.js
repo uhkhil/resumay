@@ -6,6 +6,9 @@ export class Project extends React.Component {
         return (
             <div className='block'>
                 <h5>{project.projectName}</h5>
+                <h5>{project.startDate}</h5>
+                <h5>{project.endDate}</h5>
+                <h5>{project.link}</h5>
                 {
                     project.skills ?
                         <ul>

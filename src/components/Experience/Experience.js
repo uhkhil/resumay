@@ -26,7 +26,7 @@ export class Experience extends React.Component {
     companies = [];
 
     toggleEditModal = () => {
-        this.companies = JSON.parse(JSON.stringify(this.props.data));
+        this.setState({ companies: this.props.data })
         this.setState({ isOpen: !this.state.isOpen })
     }
 
@@ -132,19 +132,16 @@ export class Experience extends React.Component {
     renderCompanyForm = (company, cIdx) => {
         return (
             <div className='block' key={cIdx}>
-                <form onSubmit={this.submit}>
-                    <InputBlock cIdx={cIdx} label='Company Name' field='companyName' type='text' required={true} defaultValue={company.companyName} />
-                    <InputBlock cIdx={cIdx} label='Title' field='title' type='text' required={true} defaultValue={company.title} />
-                    <InputBlock cIdx={cIdx} label='Start Date' field='startDate' type='date' required={true} defaultValue={company.startDate} />
-                    <InputBlock cIdx={cIdx} label='End Date' field='endDate' type='date' required={true} defaultValue={company.endDate} />
-                    <InputBlock cIdx={cIdx} label='Link' field='link' type='text' required={true} defaultValue={company.link} />
-                    <InputBlock cIdx={cIdx} label='Location' field='location' type='text' required={true} defaultValue={company.location} />
-                    <InputBlock cIdx={cIdx} label='Description' field='description' type='text' required={false} defaultValue={company.description} />
-                    <h4>Projects</h4>
-                    <button type='button' onClick={() => this.addProject(cIdx)}>Add Project</button>
-                    {company.projects.map((project, pIdx) => this.renderProjectForm(cIdx, project, pIdx))}
-                    <button type='submit'>Submit</button>
-                </form>
+                <InputBlock cIdx={cIdx} label='Company Name' field='companyName' type='text' required={true} defaultValue={company.companyName} />
+                <InputBlock cIdx={cIdx} label='Title' field='title' type='text' required={true} defaultValue={company.title} />
+                <InputBlock cIdx={cIdx} label='Start Date' field='startDate' type='date' required={true} defaultValue={company.startDate} />
+                <InputBlock cIdx={cIdx} label='End Date' field='endDate' type='date' required={true} defaultValue={company.endDate} />
+                <InputBlock cIdx={cIdx} label='Link' field='link' type='text' required={true} defaultValue={company.link} />
+                <InputBlock cIdx={cIdx} label='Location' field='location' type='text' required={true} defaultValue={company.location} />
+                <InputBlock cIdx={cIdx} label='Description' field='description' type='text' required={false} defaultValue={company.description} />
+                <h4>Projects</h4>
+                <button type='button' onClick={() => this.addProject(cIdx)}>Add Project</button>
+                {company.projects.map((project, pIdx) => this.renderProjectForm(cIdx, project, pIdx))}
             </div>
         )
     }
@@ -157,7 +154,11 @@ export class Experience extends React.Component {
                 {companies.map((company, idx) => <Company key={idx} data={company} />)}
                 <Modal title='Work Experience' isOpen={this.state.isOpen} close={this.toggleEditModal} submit={this.submit}>
                     <button type='button' onClick={this.addCompany}>Add Company</button>
-                    {this.state.companies.map((company, cIdx) => this.renderCompanyForm(company, cIdx))}
+                    <form onSubmit={this.submit}>
+                        {this.state.companies.map((company, cIdx) => this.renderCompanyForm(company, cIdx))}
+                        <button type='submit'>Submit</button>
+                    </form>
+
                 </Modal>
             </div>
         )

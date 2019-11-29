@@ -1,11 +1,16 @@
 import React from 'react'
 import { BlockHeader } from '../BlockHeader/BlockHeader'
 import { Modal } from '../Modal/Modal'
+import { JSONifyFormData } from '../../utils/Utils';
 
 export class Bio extends React.Component {
-    state = {
-        isOpen: false,
-        bio: this.props.data
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false,
+            bio: this.props.data
+        }
     }
 
     toggleEditModal = () => {
@@ -14,7 +19,8 @@ export class Bio extends React.Component {
 
     submit = async (event) => {
         event.preventDefault();
-        const data = { bio: this.state.bio }
+        const data = JSONifyFormData(new FormData(event.target))
+        console.log('TCL: Bio -> submit -> data', data);
         const updated = await this.props.update(data)
         if (updated) {
             this.toggleEditModal();
@@ -30,25 +36,29 @@ export class Bio extends React.Component {
 
     renderModal = () => {
         return <Modal title='Profile Overview' isOpen={this.state.isOpen} close={this.toggleEditModal} submit={this.submit}>
-            <label htmlFor="exampleMessage">Bio</label>
-            <textarea
-                minLength={10}
-                maxLength={500}
-                className="u-full-width"
-                placeholder="I am a full-stack developer with 15 years of experience..."
-                id="exampleMessage"
-                value={this.state.bio}
-                onChange={this.textChange}
-            ></textarea>
+            <form onSubmit={this.submit}>
+                <label htmlFor="bio">Bio</label>
+                <textarea
+                    minLength={10}
+                    maxLength={500}
+                    className="u-full-width"
+                    placeholder="I am a full-stack developer with 15 years of experience..."
+                    name='bio'
+                    defaultValue={this.props.data}
+                ></textarea>
+                <button type='submit'>Submit</button>
+            </form>
         </Modal>
     }
 
     render() {
         const bio = this.props.data
+        console.log('TCL: Bio -> render -> this.props', this.props);
         return (
             <div className="block">
-                <BlockHeader title='Profile Overview' edit={this.toggleEditModal} />
-                <p>{bio}</p>
+                <BlockHeader title='Profile Overview' mode={this.props.mode} edit={this.toggleEditModal} />
+                <p>{this.props.data}</p>
+                <p>{this.state.bio}</p>
                 {this.renderModal()}
             </div>
         )

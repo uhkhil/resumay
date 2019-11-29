@@ -10,7 +10,10 @@ export class BlockHeader extends React.Component {
         return (
             <div>
                 <h2>{this.props.title}</h2>
-                <span onClick={this.edit}>Edit</span>
+                {
+                    this.props.mode === 'EDIT' || true ?
+                        <span onClick={this.edit}>Edit</span> : null
+                }
             </div>
         )
     }

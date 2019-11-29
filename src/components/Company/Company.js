@@ -8,6 +8,10 @@ export class Company extends React.Component {
             <div className='block'>
                 <h4>{company.title}</h4>
                 <h5>{company.companyName}</h5>
+                <h5>{company.startDate}</h5>
+                <h5>{company.endDate}</h5>
+                <h5>{company.link}</h5>
+                <h5>{company.location}</h5>
                 <p>{company.description}</p>
                 {company.projects.length ? (
                     <div>
