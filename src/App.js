@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import { ResumeCreator } from './containers/ResumeCreator/ResumeCreator';
-import { ResumeViewer } from './containers/ResumeViewer/ResumeViewer';
+import { Resume } from './containers/Resume/Resume';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,28 +9,20 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+import { Landing } from './containers/Landing/Landing';
 
 function App() {
   return (
     <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Creator</Link>
-          </li>
-          <li>
-            <Link to="/view">View</Link>
-          </li>
-        </ul>
-        <Switch>
-          <Route path="/view">
-            <ResumeCreator mode={'VIEW'} />
-          </Route>
-          <Route path="/" >
-            <ResumeCreator mode={'EDIT'} />
-          </Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/view">
+          <Resume mode={'VIEW'} />
+        </Route>
+        <Route path="/creator" render={props => <Resume mode={'EDIT'} {...props} />}>
+        </Route>
+        <Route path="/" render={props => <Landing {...props} />}>
+        </Route>
+      </Switch>
     </Router>
   );
 }
