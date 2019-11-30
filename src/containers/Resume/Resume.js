@@ -121,7 +121,7 @@ export class Resume extends React.Component {
                 {
                     this.props.mode === MODES.EDIT ? this.renderHeader() : null
                 }
-                <div className="row">
+                <div className="row" style={{ flexWrap: 'wrap' }}>
                     <div className="f3">
                         <Profile mode={this.props.mode} data={this.state.profileData} update={this.update} />
                         <Tags mode={this.props.mode} data={this.state.tags} update={this.update} />
