@@ -3,8 +3,7 @@ import { Profile } from '../../components/Profile/Profile';
 import { Tags } from '../../components/Tags/Tags';
 import { Bio } from '../../components/Bio/Bio';
 import { Experience } from '../../components/Experience/Experience';
-import { useParams } from "react-router-dom";
-
+import './Resume.css';
 
 import { API } from '../../services/API';
 import { Auth } from '../../services/Auth';
@@ -98,12 +97,12 @@ export class Resume extends React.Component {
 
     renderHeader = () => {
         return (
-            <header className='row'>
-                <h4 className='one column'>Resumay</h4>
-                <div className='one row u-pull-right'>
-                    <button onClick={this.view}>View</button>
-                    <button onClick={this.download}>Download</button>
-                    <button onClick={this.logout}>Logout</button>
+            <header className='row aic jcsb'>
+                <h4 className='header-title'></h4>
+                <div className=''>
+                    <button className="button-primary header-button" onClick={this.view}>View</button>
+                    <button className="button-primary header-button" onClick={this.download}>Download</button>
+                    <button className="button-primary header-button" onClick={this.logout}>Logout</button>
                 </div>
             </header>
         )
@@ -116,11 +115,11 @@ export class Resume extends React.Component {
                     this.props.mode === 'EDIT' ? this.renderHeader() : null
                 }
                 <div className="row">
-                    <div className="four columns">
+                    <div className="f3">
                         <Profile mode={this.props.mode} data={this.state.profileData} update={this.update} />
                         <Tags data={this.state.tags} update={this.update} />
                     </div>
-                    <div className="eight columns">
+                    <div className="f8">
                         <Bio mode={this.props.mode} data={this.state.bio} update={this.update} />
                         <Experience data={this.state.experiences} update={this.update} />
                         {/* <Education data={this.state.education} update={this.update} />

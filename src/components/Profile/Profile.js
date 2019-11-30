@@ -31,9 +31,9 @@ export class Profile extends React.Component {
                 <label htmlFor='lastName'>Last Name</label>
                 <input type='text' name='lastName' required defaultValue={this.props.data.lastName} />
                 <label htmlFor='email'>Email</label>
-                <input type='text' name='email' required defaultValue={this.props.data.email} />
+                <input type='email' name='email' required defaultValue={this.props.data.email} />
                 <label htmlFor='phone'>Phone</label>
-                <input type='text' name='phone' required defaultValue={this.props.data.phone} />
+                <input type='number' name='phone' required defaultValue={this.props.data.phone} />
                 <label htmlFor='city'>City</label>
                 <input type='text' name='city' required defaultValue={this.props.data.city} />
                 <label htmlFor='country'>Country</label>
@@ -53,13 +53,17 @@ export class Profile extends React.Component {
         const data = this.props.data
         return (
             <div className='block profile-container'>
-                <img src={data.image} className='image tac' alt="profile" />
-                <h4 className='tac'>{data.firstName} {data.lastName}</h4>
+                <i class='fa fa-pencil fr fs20' onClick={this.toggleEditModal}></i>
+                <div className='block-content column aic jcsa'>
+                    <img src={data.image} className='image tac' alt="profile" />
+                    <h4 className='tac profile-name'>{data.firstName} {data.lastName} </h4>
+                </div>
                 <hr />
-                <button type='button u-pull-right' onClick={this.toggleEditModal}>Edit</button>
-                <h5 className='p0 m0'>{data.email}</h5>
-                <h5 className='p0 m0'>{data.phone}</h5>
-                <h5 className='p0 m0'>{data.city}, {data.country}</h5>
+                <div className='block-content'>
+                    <a href={'mailto:' + data.email} className='p0 m0 text subtle-anchor'><i class="fa fa-envelope"></i> {data.email}</a><br />
+                    <a href={'tel:' + data.phone} className='p0 m0 text subtle-anchor'><i class="fa fa-phone"></i> {data.phone}</a><br />
+                    <span className='p0 m0 text'><i class="fa fa-map-marker"></i> {data.city}, {data.country}</span><br />
+                </div>
                 {this.renderModal()}
             </div>
         )

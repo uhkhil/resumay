@@ -1,3 +1,17 @@
 .resume-container {
-    background-color: #f6f7f9;
+    background-color: #cbe0f5;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #fff;
+}
+
+.header-title {
+    margin-left: 20px;
+    font-size: larger;
+}
+
+.header-button {
+    margin-right: 20px;
 }

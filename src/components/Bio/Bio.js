@@ -51,12 +51,12 @@ export class Bio extends React.Component {
     }
 
     render() {
-        const bio = this.props.data
         return (
             <div className="block">
-                <BlockHeader title='Profile Overview' mode={this.props.mode} edit={this.toggleEditModal} />
-                <p>{this.props.data}</p>
-                <p>{this.state.bio}</p>
+                <BlockHeader title='Profile Overview' icon='user-circle' mode={this.props.mode} edit={this.toggleEditModal} />
+                <div className='block-content'>
+                    <p className='text'>{this.props.data}</p>
+                </div>
                 {this.renderModal()}
             </div>
         )

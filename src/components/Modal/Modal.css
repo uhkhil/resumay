@@ -42,7 +42,7 @@
 }
 
 .modal .modal-inner .modal-content .modal-content-inner {
-    height: 75vh;
+    height: 60vh;
     padding-right: 2em;
     overflow-y: scroll;
 }

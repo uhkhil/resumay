@@ -14,8 +14,8 @@ export class Landing extends React.Component {
     render() {
         return (
             <div className='container'>
-                <h1>Resumay</h1>
-                <h3>Go paper less. Share you profile with the world.</h3>
+                <h3>Resumay</h3>
+                <h4>Go paper less. Share you profile with the world.</h4>
                 <br />
                 <button onClick={this.login}>Get started!</button>
             </div>
