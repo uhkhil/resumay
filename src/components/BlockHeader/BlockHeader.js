@@ -1,5 +1,6 @@
 import React from 'react';
 import './BlockHeader.css';
+import { MODES } from '../constants/Mode';
 
 export class BlockHeader extends React.Component {
 
@@ -16,7 +17,7 @@ export class BlockHeader extends React.Component {
                         {this.props.title}
                     </h4>
                     {
-                        this.props.mode === 'EDIT' || true ?
+                        this.props.mode === MODES.EDIT ?
                             <i class="fa fa-pencil fa-lg u-pull-right" onClick={this.edit}></i> : null
                     }
                 </div>

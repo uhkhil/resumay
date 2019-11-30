@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { Landing } from './containers/Landing/Landing';
 import { Error } from './containers/Error/Error';
+import { MODES } from './components/constants/Mode';
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
       <Switch>
         <Route path="/error" render={props => <Error {...props} />}>
         </Route>
-        <Route path="/view/:userId" render={props => <Resume mode={'VIEW'} {...props} />}>
+        {/* TODO: Use context API to send mode props */}
+        <Route path="/view/:userId" render={props => <Resume mode={MODES.VIEW} {...props} />}>
         </Route>
-        <Route path="/creator" render={props => <Resume mode={'EDIT'} {...props} />}>
+        <Route path="/creator" render={props => <Resume mode={MODES.EDIT} {...props} />}>
         </Route>
         <Route path="/" render={props => <Landing {...props} />}>
         </Route>

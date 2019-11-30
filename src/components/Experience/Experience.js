@@ -152,7 +152,7 @@ export class Experience extends React.Component {
         const companies = this.props.data;
         return (
             <div className="block">
-                <BlockHeader title='Work Experience' icon='briefcase' edit={this.toggleEditModal} />
+                <BlockHeader title='Work Experience' icon='briefcase' edit={this.toggleEditModal} mode={this.props.mode} />
                 {companies.map((company, idx) => <Company key={idx} data={company} />)}
                 <Modal title='Work Experience' isOpen={this.state.isOpen} close={this.toggleEditModal}>
                     <button type='button' onClick={this.addCompany}>Add Company</button>

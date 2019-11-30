@@ -85,3 +85,8 @@
     display: flex;
     flex-direction: column;
 }
+
+.modal-form form {
+    display: flex;
+    flex-direction: column;
+}

@@ -7,13 +7,14 @@ import './Resume.css';
 
 import { API } from '../../services/API';
 import { Auth } from '../../services/Auth';
+import { MODES } from '../../components/constants/Mode';
 
 export class Resume extends React.Component {
     constructor(props) {
         super(props);
         // TODO: Figure out way to call this when page called everytime.
         // TODO: Figure out issue when no session on first load.
-        if (props.mode === 'EDIT') {
+        if (props.mode === MODES.EDIT) {
             const session = Auth.checkSession();
             if (!session) {
                 console.log('Redirect to login.')
@@ -118,16 +119,16 @@ export class Resume extends React.Component {
         return (
             <div className="resume-container">
                 {
-                    this.props.mode === 'EDIT' ? this.renderHeader() : null
+                    this.props.mode === MODES.EDIT ? this.renderHeader() : null
                 }
                 <div className="row">
                     <div className="f3">
                         <Profile mode={this.props.mode} data={this.state.profileData} update={this.update} />
-                        <Tags data={this.state.tags} update={this.update} />
+                        <Tags mode={this.props.mode} data={this.state.tags} update={this.update} />
                     </div>
                     <div className="f8">
                         <Bio mode={this.props.mode} data={this.state.bio} update={this.update} />
-                        <Experience data={this.state.experiences} update={this.update} />
+                        <Experience mode={this.props.mode} data={this.state.experiences} update={this.update} />
                         {/* <Education data={this.state.education} update={this.update} />
                         <Certification data={this.state.certifications} update={this.update} />
                         <Events data={this.state.events} update={this.update} /> */}

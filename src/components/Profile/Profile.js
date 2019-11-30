@@ -2,6 +2,7 @@ import React from 'react'
 import './Profile.css'
 import { Modal } from '../Modal/Modal'
 import { JSONifyFormData } from '../../utils/Utils'
+import { MODES } from '../constants/Mode'
 
 export class Profile extends React.Component {
 
@@ -54,7 +55,11 @@ export class Profile extends React.Component {
         const data = this.props.data
         return (
             <div className='block profile-container'>
-                <i class='fa fa-pencil fr fs20' onClick={this.toggleEditModal}></i>
+                {
+                    this.props.mode === MODES.EDIT ?
+                        <i class='fa fa-pencil fr fs20' onClick={this.toggleEditModal}></i>
+                        : null
+                }
                 <div className='block-content column aic jcsa'>
                     <img src={data.image} className='image tac' alt="profile" />
                     <h4 className='tac profile-name'>{data.firstName} {data.lastName} </h4>
