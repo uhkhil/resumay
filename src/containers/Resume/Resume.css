@@ -8,8 +8,10 @@ header {
 }
 
 .header-title {
+    margin: 10px;
     margin-left: 20px;
-    font-size: larger;
+    font-weight: 300;
+    font-size: xx-large;
 }
 
 .header-button {

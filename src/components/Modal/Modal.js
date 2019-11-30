@@ -10,13 +10,14 @@ export class Modal extends React.Component {
                     <div className="modal-content">
                         <h2>{this.props.title}</h2>
                         <hr style={{ margin: 0 }} />
-                        <div className="modal-content-inner">
+                        <div className="modal-content-inner modal-form">
                             {this.props.children}
                         </div>
                         <hr className="modal-buttons-seperator" />
                         <div className="modal-buttons">
                             <button className="button close-modal" onClick={this.props.close}>Cancel</button>
-                            <button className="button button-primary close-modal" onClick={this.props.submit}>Update</button>
+                            {/* TODO: Get the submit call out */}
+                            {/* <button className="button button-primary close-modal" onClick={this.props.submit}>Update</button> */}
                         </div>
                     </div>
                 </div>

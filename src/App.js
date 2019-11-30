@@ -5,16 +5,16 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useRouteMatch,
-  useParams
 } from "react-router-dom";
 import { Landing } from './containers/Landing/Landing';
+import { Error } from './containers/Error/Error';
 
 function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/error" render={props => <Error {...props} />}>
+        </Route>
         <Route path="/view/:userId" render={props => <Resume mode={'VIEW'} {...props} />}>
         </Route>
         <Route path="/creator" render={props => <Resume mode={'EDIT'} {...props} />}>

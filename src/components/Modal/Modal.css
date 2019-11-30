@@ -79,3 +79,9 @@
 .modal .modal-inner .modal-content .modal-buttons button:first-child {
     margin-left: 0;
 }
+
+
+.modal-form form .block {
+    display: flex;
+    flex-direction: column;
+}

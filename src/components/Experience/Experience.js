@@ -23,6 +23,8 @@ export class Experience extends React.Component {
         }
     }
 
+    form = React.createRef();
+
     companies = [];
 
     toggleEditModal = () => {
@@ -152,13 +154,12 @@ export class Experience extends React.Component {
             <div className="block">
                 <BlockHeader title='Work Experience' icon='briefcase' edit={this.toggleEditModal} />
                 {companies.map((company, idx) => <Company key={idx} data={company} />)}
-                <Modal title='Work Experience' isOpen={this.state.isOpen} close={this.toggleEditModal} submit={this.submit}>
+                <Modal title='Work Experience' isOpen={this.state.isOpen} close={this.toggleEditModal}>
                     <button type='button' onClick={this.addCompany}>Add Company</button>
-                    <form onSubmit={this.submit}>
+                    <form onSubmit={this.submit} ref={el => this.form = el}>
                         {this.state.companies.map((company, cIdx) => this.renderCompanyForm(company, cIdx))}
-                        <button type='submit'>Submit</button>
+                        <button type='submit' className='button-primary'>Submit</button>
                     </form>
-
                 </Modal>
             </div>
         )

@@ -38,27 +38,32 @@ export class Resume extends React.Component {
 
     fetchResume = async () => {
         const userId = this.userId;
-        const result = await API.fetchResume(userId)
-        if (result.data && result.status) {
-            const data = result.data.resource[0];
-            const { image, firstName, lastName, email, phone, city, country, tags, bio, experiences, education, certifications, events } = data
-            this.setState({
-                profileData: {
-                    image,
-                    firstName,
-                    lastName,
-                    email,
-                    phone,
-                    city,
-                    country
-                },
-                tags,
-                bio,
-                experiences,
-                education,
-                certifications,
-                events
-            })
+        try {
+            const result = await API.fetchResume(userId)
+            if (result.data && result.status) {
+                const data = result.data.resource[0];
+                const { image, firstName, lastName, email, phone, city, country, tags, bio, experiences, education, certifications, events } = data
+                this.setState({
+                    profileData: {
+                        image,
+                        firstName,
+                        lastName,
+                        email,
+                        phone,
+                        city,
+                        country
+                    },
+                    tags,
+                    bio,
+                    experiences,
+                    education,
+                    certifications,
+                    events
+                })
+            }
+        } catch (err) {
+            console.log('TCL: Resume -> fetchResume -> err', err);
+            this.props.history.push('/error');
         }
     }
 
@@ -98,7 +103,7 @@ export class Resume extends React.Component {
     renderHeader = () => {
         return (
             <header className='row aic jcsb'>
-                <h4 className='header-title'></h4>
+                <h4 className='header-title'>Resumay</h4>
                 <div className=''>
                     <button className="button-primary header-button" onClick={this.view}>View</button>
                     <button className="button-primary header-button" onClick={this.download}>Download</button>

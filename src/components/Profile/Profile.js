@@ -38,7 +38,8 @@ export class Profile extends React.Component {
                 <input type='text' name='city' required defaultValue={this.props.data.city} />
                 <label htmlFor='country'>Country</label>
                 <input type='text' name='country' required defaultValue={this.props.data.country} />
-                <button type='submit'>Submit</button>
+                <br />
+                <button type='submit' className='button-primary'>Submit</button>
             </form>
         </Modal>
     }
