@@ -121,7 +121,7 @@ export class Experience extends React.Component {
     renderProjectForm = (cIdx, project, pIdx) => {
         return (
             <div className='block' key={cIdx + '.' + pIdx}>
-                <InputBlock cIdx={cIdx} pIdx={pIdx} label='Company Name' field='projectName' type='text' required={true} defaultValue={project.projectName} />
+                <InputBlock cIdx={cIdx} pIdx={pIdx} label='Project Name' field='projectName' type='text' required={true} defaultValue={project.projectName} />
                 {/* <InputBlock cIdx={cIdx} pIdx={pIdx} label='Skills' field='skills' type='text' required={true} defaultValue={project.skills} /> */}
                 <InputBlock cIdx={cIdx} pIdx={pIdx} label='Start Date' field='startDate' type='date' required={true} defaultValue={project.startDate} />
                 <InputBlock cIdx={cIdx} pIdx={pIdx} label='End Date' field='endDate' type='date' required={true} defaultValue={project.endDate} />

@@ -12,7 +12,7 @@ export class Resume extends React.Component {
     constructor(props) {
         super(props);
         // TODO: Figure out way to call this when page called everytime.
-        // TODO: Figure out issue when no session on refresh.
+        // TODO: Figure out issue when no session on first load.
         if (props.mode === 'EDIT') {
             const session = Auth.checkSession();
             if (!session) {
@@ -87,6 +87,7 @@ export class Resume extends React.Component {
     }
 
     logout = async () => {
+        // TODO: Add confirmation
         await Auth.logout();
         this.props.history.push('/');
     }
@@ -106,7 +107,7 @@ export class Resume extends React.Component {
                 <h4 className='header-title'>Resumay</h4>
                 <div className=''>
                     <button className="button-primary header-button" onClick={this.view}>View</button>
-                    <button className="button-primary header-button" onClick={this.download}>Download</button>
+                    {/* <button className="button-primary header-button" onClick={this.download}>Download</button> */}
                     <button className="button-primary header-button" onClick={this.logout}>Logout</button>
                 </div>
             </header>
