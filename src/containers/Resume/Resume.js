@@ -32,7 +32,8 @@ export class Resume extends React.Component {
             experiences: [],
             education: [],
             certifications: [],
-            events: []
+            events: [],
+            loading: true,
         }
         this.fetchResume();
     }
@@ -62,6 +63,7 @@ export class Resume extends React.Component {
                     events
                 })
             }
+            this.setState({ loading: false })
         } catch (err) {
             console.log('TCL: Resume -> fetchResume -> err', err);
             this.props.history.push('/error');
@@ -115,25 +117,37 @@ export class Resume extends React.Component {
         )
     }
 
+    renderLoading = () => {
+        return (
+            <div className='loading-container'>
+            <div className="loading"></div>
+            </div>
+        )
+    }
+
     render() {
         return (
             <div className="resume-container">
                 {
                     this.props.mode === MODES.EDIT ? this.renderHeader() : null
                 }
-                <div className="row" style={{ flexWrap: 'wrap' }}>
-                    <div className="f3">
-                        <Profile mode={this.props.mode} data={this.state.profileData} update={this.update} />
-                        <Tags mode={this.props.mode} data={this.state.tags} update={this.update} />
-                    </div>
-                    <div className="f8">
-                        <Bio mode={this.props.mode} data={this.state.bio} update={this.update} />
-                        <Experience mode={this.props.mode} data={this.state.experiences} update={this.update} />
-                        {/* <Education data={this.state.education} update={this.update} />
-                        <Certification data={this.state.certifications} update={this.update} />
-                        <Events data={this.state.events} update={this.update} /> */}
-                    </div>
-                </div>
+                {
+                    !this.state.loading ?
+                        <div className="row" style={{ flexWrap: 'wrap' }}>
+                            <div className="f3">
+                                <Profile mode={this.props.mode} data={this.state.profileData} update={this.update} />
+                                <Tags mode={this.props.mode} data={this.state.tags} update={this.update} />
+                            </div>
+                            <div className="f8">
+                                <Bio mode={this.props.mode} data={this.state.bio} update={this.update} />
+                                <Experience mode={this.props.mode} data={this.state.experiences} update={this.update} />
+                                {/* <Education data={this.state.education} update={this.update} />
+                                    <Certification data={this.state.certifications} update={this.update} />
+                                    <Events data={this.state.events} update={this.update} /> */}
+                            </div>
+                        </div>
+                        : this.renderLoading()
+                }
             </div>
         )
     }
