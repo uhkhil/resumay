@@ -108,7 +108,7 @@ export class Resume extends React.Component {
         return (
             <header className='row aic jcsb'>
                 <h4 className='header-title'>Resumay</h4>
-                <div className=''>
+                <div className='header-button-group'>
                     <button className="button-primary header-button" onClick={this.view}>View</button>
                     {/* <button className="button-primary header-button" onClick={this.download}>Download</button> */}
                     <button className="button-primary header-button" onClick={this.logout}>Logout</button>

@@ -4,6 +4,8 @@ import "firebase/auth";
 import { API } from "./API";
 
 let loggedIn = false;
+let accessToken = null;
+let idToken = null;
 
 const subcribeAuthStateChange = () => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -26,7 +28,8 @@ const login = async () => {
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
         const result = await firebase.auth().signInWithPopup(provider)
         console.log('TCL: login -> result', result);
-        const token = result.credential.accessToken;
+        accessToken = result.credential.accessToken;
+        idToken = result.credential.idToken;
         const user = result.user;
         if (result.additionalUserInfo.isNewUser) {
             const providerId = result.additionalUserInfo.providerId;
@@ -47,10 +50,13 @@ const logout = async () => {
 
 const user = () => firebase.auth().currentUser;
 
+const getToken = () => ({ accessToken, idToken })
+
 export const Auth = {
     subcribeAuthStateChange,
     checkSession,
     login,
     logout,
-    user
+    user,
+    getToken
 }
