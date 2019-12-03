@@ -68,7 +68,6 @@ export class Resume extends React.Component {
             }
             this.setState({ loading: false })
         } catch (err) {
-            console.log('TCL: Resume -> fetchResume -> err', err);
             this.props.history.push('/error');
         }
     }
