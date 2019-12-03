@@ -1,23 +1,26 @@
-import React from 'react'
-import { BlockHeader } from '../BlockHeader/BlockHeader'
-
-const Event = (props) => {
-    const event = props.data;
-    return (
-        <div className='block'>
-            <h5>{event.award}</h5>
-            <p>{event.description}</p>
-        </div>
-    )
-}
+import React from 'react';
+import { BlockHeader } from '../BlockHeader/BlockHeader';
+import { EventsEditModal } from './EventsEditModal';
+import { Event } from './Event';
 
 export class Events extends React.Component {
+
+    state = {
+        isOpen: false
+    }
+
+    toggleModal = () => {
+        this.setState({ isOpen: !this.state.isOpen })
+    }
+
     render() {
         const events = this.props.data;
+        const { isOpen } = this.state;
         return (
-            <div className='block'>
-                <BlockHeader title='Events' />
-                {events.map(event => <Event data={event} />)}
+            <div className="block">
+                <BlockHeader mode={this.props.mode} title="Events / Awards" icon='trophy' edit={this.toggleModal} />
+                {events.map((institute, idx) => <Event key={idx} data={institute} />)}
+                <EventsEditModal data={events} isOpen={isOpen} toggleModal={this.toggleModal} update={this.props.update} />
             </div>
         )
     }

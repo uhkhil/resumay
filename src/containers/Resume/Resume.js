@@ -9,6 +9,8 @@ import './Resume.css';
 import { API } from '../../services/API';
 import { Auth } from '../../services/Auth';
 import { MODES } from '../../components/constants/Mode';
+import { Certification } from '../../components/Certification/Certification';
+import { Events } from '../../components/Events/Events';
 
 export class Resume extends React.Component {
     constructor(props) {
@@ -87,6 +89,12 @@ export class Resume extends React.Component {
             if (data.education) {
                 this.setState({ education: data.education })
             }
+            if (data.certifications) {
+                this.setState({ certifications: data.certifications })
+            }
+            if (data.events) {
+                this.setState({ events: data.events })
+            }
         } else {
             alert('Something went wrong. Could not update resume');
         }
@@ -146,8 +154,8 @@ export class Resume extends React.Component {
                                 <Bio mode={this.props.mode} data={this.state.bio} update={this.update} />
                                 <Experience mode={this.props.mode} data={this.state.experiences} update={this.update} />
                                 <Education mode={this.props.mode} data={this.state.education} update={this.update} />
-                                {/* <Certification data={this.state.certifications} update={this.update} />
-                                    <Events data={this.state.events} update={this.update} /> */}
+                                <Certification mode={this.props.mode} data={this.state.certifications} update={this.update} />
+                                <Events mode={this.props.mode} data={this.state.events} update={this.update} />
                             </div>
                         </div>
                         : this.renderLoading()
