@@ -12,13 +12,13 @@ export class BlockHeader extends React.Component {
         return (
             <React.Fragment>
                 <div className='row aic jcsb'>
-                    <h4 class='block-header-title'>
-                        <i class={'block-header-icon primary-color fa fa-' + this.props.icon}></i>
+                    <h4 className='block-header-title'>
+                        <i className={'block-header-icon primary-color fa fa-' + this.props.icon}></i>
                         {this.props.title}
                     </h4>
                     {
                         this.props.mode === MODES.EDIT ?
-                            <i class="fa fa-pencil fa-lg u-pull-right" onClick={this.edit}></i> : null
+                            <i className="fa fa-pencil fa-lg u-pull-right" onClick={this.edit}></i> : null
                     }
                 </div>
                 <hr className='m0 ' />

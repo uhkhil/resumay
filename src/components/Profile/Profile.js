@@ -57,7 +57,7 @@ export class Profile extends React.Component {
             <div className='block profile-container'>
                 {
                     this.props.mode === MODES.EDIT ?
-                        <i class='fa fa-pencil fr fs20' onClick={this.toggleEditModal}></i>
+                        <i className='fa fa-pencil fr fs20' onClick={this.toggleEditModal}></i>
                         : null
                 }
                 <div className='block-content column aic jcsa'>
@@ -66,9 +66,9 @@ export class Profile extends React.Component {
                 </div>
                 <hr />
                 <div className='block-content'>
-                    <a href={'mailto:' + data.email} className='p0 m0 text subtle-anchor'><i class="fa fa-envelope"></i> {data.email}</a><br />
-                    <a href={'tel:' + data.phone} className='p0 m0 text subtle-anchor'><i class="fa fa-phone"></i> {data.phone}</a><br />
-                    <span className='p0 m0 text'><i class="fa fa-map-marker"></i> {data.city}, {data.country}</span><br />
+                    <a href={'mailto:' + data.email} className='p0 m0 text subtle-anchor'><i className="fa fa-envelope"></i> {data.email}</a><br />
+                    <a href={'tel:' + data.phone} className='p0 m0 text subtle-anchor'><i className="fa fa-phone"></i> {data.phone}</a><br />
+                    <span className='p0 m0 text'><i className="fa fa-map-marker"></i> {data.city}, {data.country}</span><br />
                 </div>
                 {this.renderModal()}
             </div>

@@ -252,3 +252,42 @@ input[type="button"].button-primary:focus {
   background-color: #1EAEDB;
   border-color: #1EAEDB;
 }
+
+
+/* Blocks and content */
+
+.block .block-container {
+  padding: 10px;
+}
+
+.block-title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.block .block-title {
+  font-weight: 500;
+  font-size: larger;
+}
+
+.block-subtitle-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.block .block-subtitle {
+  font-size: large;
+}
+
+.block .block-header-text {
+  font-size: large;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-weight: 400;
+}

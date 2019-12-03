@@ -3,6 +3,7 @@ import { Profile } from '../../components/Profile/Profile';
 import { Tags } from '../../components/Tags/Tags';
 import { Bio } from '../../components/Bio/Bio';
 import { Experience } from '../../components/Experience/Experience';
+import { Education } from '../../components/Education/Education'
 import './Resume.css';
 
 import { API } from '../../services/API';
@@ -83,6 +84,9 @@ export class Resume extends React.Component {
             if (data.experiences) {
                 this.setState({ experiences: data.experiences })
             }
+            if (data.education) {
+                this.setState({ education: data.education })
+            }
         } else {
             alert('Something went wrong. Could not update resume');
         }
@@ -120,7 +124,7 @@ export class Resume extends React.Component {
     renderLoading = () => {
         return (
             <div className='loading-container'>
-            <div className="loading"></div>
+                <div className="loading"></div>
             </div>
         )
     }
@@ -141,8 +145,8 @@ export class Resume extends React.Component {
                             <div className="f8">
                                 <Bio mode={this.props.mode} data={this.state.bio} update={this.update} />
                                 <Experience mode={this.props.mode} data={this.state.experiences} update={this.update} />
-                                {/* <Education data={this.state.education} update={this.update} />
-                                    <Certification data={this.state.certifications} update={this.update} />
+                                <Education mode={this.props.mode} data={this.state.education} update={this.update} />
+                                {/* <Certification data={this.state.certifications} update={this.update} />
                                     <Events data={this.state.events} update={this.update} /> */}
                             </div>
                         </div>
