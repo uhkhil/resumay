@@ -113,6 +113,7 @@ hr {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 input[type="email"],
 input[type="number"],
+input[type="date"],
 input[type="search"],
 input[type="text"],
 input[type="tel"],
@@ -133,6 +134,7 @@ select {
 /* Removes awkward default styles on some inputs for iOS */
 input[type="email"],
 input[type="number"],
+input[type="date"],
 input[type="search"],
 input[type="text"],
 input[type="tel"],
@@ -152,6 +154,7 @@ textarea {
 
 input[type="email"]:focus,
 input[type="number"]:focus,
+input[type="date"]:focus,
 input[type="search"]:focus,
 input[type="text"]:focus,
 input[type="tel"]:focus,
@@ -290,4 +293,70 @@ input[type="button"].button-primary:focus {
   margin-top: 10px;
   margin-bottom: 15px;
   font-weight: 400;
+}
+
+/* Modal */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: baseline;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.form-control {
+  margin: 10px;
+  flex: 1;
+}
+
+.form-control>input,
+textarea {
+  width: 100%;
+}
+
+.form-block {
+  border: 2px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.form-block>.button-remove {
+  float: right;
+  color: red;
+  font-size: larger;
+}
+
+.form>.button-add {
+  width: 300px;
+  margin: 10px;
+  /* float: right;
+  color: red;
+  font-size: larger; */
+}
+
+.form-block-block {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.skills-list {
+  margin: 0;
+  margin-top: 10px;
+  font-size: medium;
+  font-weight: 300;
 }

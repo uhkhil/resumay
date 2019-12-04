@@ -1,13 +1,11 @@
 import React from 'react'
-import './Project.css';
 
 export class Project extends React.Component {
     render() {
-        const project = this.props.data
-        // TODO: Make dynamic
+        const project = this.props.data;
         project.skills = ['React', 'Angular', 'AWS']
         return (
-            <div className='project-container'>
+            <div className='form-block-block'>
                 <a className='subtle-anchor' href={project.projectName} target='_blank' rel='noopener noreferrer'>{project.projectName}</a>
                 <br />
                 {

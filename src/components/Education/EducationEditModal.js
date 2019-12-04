@@ -21,7 +21,8 @@ export class EducationEditModal extends React.Component {
         const arr = cloner(this.state.institutes)
         const newObj = {}
         arr.push(newObj);
-        this.setState({ institutes: arr })
+        const idx = arr.length - 1;
+        this.setState({ institutes: arr }, () => { this['ref' + idx].scrollIntoView({ behavior: 'smooth' }) })
     }
 
     submit = async () => {
@@ -43,21 +44,41 @@ export class EducationEditModal extends React.Component {
     }
 
     renderInstituteForm = (institute, idx) => {
-        return <React.Fragment key={idx}>
-            <button type='button' onClick={this.removeInstitute.bind(null, idx)}>Remove</button>
-            <label>Degree</label>
-            <input type='text' value={institute.degreeName} onChange={this.handleChange} data-id={idx} name='degreeName' />
-            <label>Institute</label>
-            <input type='text' required value={institute.instituteName} onChange={this.handleChange} data-id={idx} name='instituteName' />
-            <label>Start date</label>
-            <input type='date' required value={institute.startDate} onChange={this.handleChange} data-id={idx} name='startDate' />
-            <label>End date</label>
-            <input type='date' required value={institute.endDate} onChange={this.handleChange} data-id={idx} name='endDate' />
-            <label>Location</label>
-            <input type='text' required value={institute.location} onChange={this.handleChange} data-id={idx} name='location' />
-            <label>Description</label>
-            <textarea value={institute.description} onChange={this.handleChange} data-id={idx} name='description' />
-        </React.Fragment>
+        return <div key={idx} className='form-block' ref={el => this['ref' + idx] = el}>
+            <span type='button' className='button-remove' onClick={this.removeInstitute.bind(null, idx)}><i className='fa fa-times'></i></span>
+            <div className='form-group'>
+                <div className='form-control'>
+                    <label>Degree</label>
+                    <input type='text' value={institute.degreeName} onChange={this.handleChange} data-id={idx} name='degreeName' />
+                </div>
+                <div className='form-control'>
+                    <label>Institute</label>
+                    <input type='text' required value={institute.instituteName} onChange={this.handleChange} data-id={idx} name='instituteName' />
+                </div>
+            </div>
+            <div className='form-group'>
+                <div className='form-control'>
+                    <label>Start date</label>
+                    <input type='date' required value={institute.startDate} onChange={this.handleChange} data-id={idx} name='startDate' />
+                </div>
+                <div className='form-control'>
+                    <label>End date</label>
+                    <input type='date' required value={institute.endDate} onChange={this.handleChange} data-id={idx} name='endDate' />
+                </div>
+            </div>
+            <div className='form-group'>
+                <div className='form-control'>
+                    <label>Location</label>
+                    <input type='text' required value={institute.location} onChange={this.handleChange} data-id={idx} name='location' />
+                </div>
+            </div>
+            <div className='form-group'>
+                <div className='form-control'>
+                    <label>Description</label>
+                    <textarea value={institute.description} onChange={this.handleChange} data-id={idx} name='description' />
+                </div>
+            </div>
+        </div>
     }
 
     render = () => {
@@ -65,8 +86,8 @@ export class EducationEditModal extends React.Component {
         const { isOpen, toggleModal } = this.props;
         return (
             <Modal title='Education' isOpen={isOpen} submit={this.submit} close={toggleModal}>
-                <form>
-                    <button type='button' onClick={this.addInstitue}>Add Institute</button>
+                <form className='form'>
+                    <button type='button' className='button-add button-primary' onClick={this.addInstitue}>Add Institute</button>
                     {institutes.map((ins, idx) => this.renderInstituteForm(ins, idx))}
                 </form>
             </Modal>

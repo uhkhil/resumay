@@ -30,14 +30,19 @@ export class BioEditModal extends React.Component {
         const { isOpen, toggleModal } = this.props;
         return (
             <Modal title='Profile Overview' isOpen={isOpen} submit={this.submit} close={toggleModal}>
-                <form onSubmit={ev => ev.preventDefault()}>
-                    <label>Description</label>
-                    <textarea
-                        minLength={10}
-                        maxLength={500}
-                        value={this.state.bio}
-                        onChange={this.handleChange}
-                        name='description' />
+                <form className='form'>
+                    <div className='form-group'>
+                        <div className='form-control'>
+                            <label>Description</label>
+                            <textarea
+                                minLength={10}
+                                maxLength={500}
+                                value={this.state.bio}
+                                onChange={this.handleChange}
+                                rows={5}
+                                name='description' />
+                        </div>
+                    </div>
                 </form>
             </Modal>
         )

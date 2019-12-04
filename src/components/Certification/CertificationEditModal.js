@@ -17,11 +17,13 @@ export class CertificationEditModal extends React.Component {
         this.setState({ certs: arr })
     }
 
-    addInstitue = () => {
+    addCert = () => {
         const arr = cloner(this.state.certs)
         const newObj = {}
         arr.push(newObj);
-        this.setState({ certs: arr })
+        const idx = arr.length - 1;
+        this.setState({ certs: arr }, () => { this['ref' + idx].scrollIntoView({ behavior: 'smooth' }) })
+
     }
 
     submit = async () => {
@@ -43,21 +45,43 @@ export class CertificationEditModal extends React.Component {
     }
 
     renderCertForm = (cert, idx) => {
-        return <React.Fragment key={idx}>
-            <button type='button' onClick={this.removeCert.bind(null, idx)}>Remove</button>
-            <label>Certification</label>
-            <input type='text' value={cert.certificationName} onChange={this.handleChange} data-id={idx} name='certificationName' />
-            <label>Institute</label>
-            <input type='text' required value={cert.instituteName} onChange={this.handleChange} data-id={idx} name='instituteName' />
-            <label>Start date</label>
-            <input type='date' required value={cert.startDate} onChange={this.handleChange} data-id={idx} name='startDate' />
-            <label>End date</label>
-            <input type='date' required value={cert.endDate} onChange={this.handleChange} data-id={idx} name='endDate' />
-            <label>Location</label>
-            <input type='text' required value={cert.location} onChange={this.handleChange} data-id={idx} name='location' />
-            <label>Description</label>
-            <textarea value={cert.description} onChange={this.handleChange} data-id={idx} name='description' />
-        </React.Fragment>
+        return (
+            <div key={idx} className='form-block' ref={el => this['ref' + idx] = el}>
+                <span className='button-remove' onClick={this.removeCert.bind(null, idx)}><i className='fa fa-times'></i></span>
+                <div className='form-group'>
+                    <div className='form-control'>
+                        <label>Certification</label>
+                        <input type='text' value={cert.certificationName} onChange={this.handleChange} data-id={idx} name='certificationName' />
+                    </div>
+                    <div className='form-control'>
+                        <label>Institute</label>
+                        <input type='text' required value={cert.instituteName} onChange={this.handleChange} data-id={idx} name='instituteName' />
+                    </div>
+                </div>
+                <div className='form-group'>
+                    <div className='form-control'>
+                        <label>Start date</label>
+                        <input type='date' required value={cert.startDate} onChange={this.handleChange} data-id={idx} name='startDate' />
+                    </div>
+                    <div className='form-control'>
+                        <label>End date</label>
+                        <input type='date' required value={cert.endDate} onChange={this.handleChange} data-id={idx} name='endDate' />
+                    </div>
+                </div>
+                <div className='form-group'>
+                    <div className='form-control'>
+                        <label>Location</label>
+                        <input type='text' required value={cert.location} onChange={this.handleChange} data-id={idx} name='location' />
+                    </div>
+                </div>
+                <div className='form-group'>
+                    <div className='form-control'>
+                        <label>Description</label>
+                        <textarea value={cert.description} onChange={this.handleChange} data-id={idx} name='description' />
+                    </div>
+                </div>
+            </div>
+        )
     }
 
     render = () => {
@@ -65,8 +89,8 @@ export class CertificationEditModal extends React.Component {
         const { isOpen, toggleModal } = this.props;
         return (
             <Modal title='Certification' isOpen={isOpen} submit={this.submit} close={toggleModal}>
-                <form>
-                    <button type='button' onClick={this.addInstitue}>Add Certification</button>
+                <form className='form'>
+                    <button type='button' className='button button-primary button-add' onClick={this.addCert}>Add Certification</button>
                     {certs.map((ins, idx) => this.renderCertForm(ins, idx))}
                 </form>
             </Modal>
