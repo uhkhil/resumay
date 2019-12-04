@@ -19,7 +19,12 @@ export class EventsEditModal extends React.Component {
 
     addEvent = () => {
         const arr = cloner(this.state.events)
-        const newObj = {}
+        const newObj = {
+            eventName: '',
+            instituteName: '',
+            date: '',
+            description: ''
+        }
         arr.push(newObj);
         const idx = arr.length - 1;
         this.setState({ events: arr }, () => { this['ref' + idx].scrollIntoView({ behavior: 'smooth' }) })

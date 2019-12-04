@@ -19,7 +19,14 @@ export class CertificationEditModal extends React.Component {
 
     addCert = () => {
         const arr = cloner(this.state.certs)
-        const newObj = {}
+        const newObj = {
+            certificationName: '',
+            instituteName: '',
+            startDate: '',
+            endDate: '',
+            location: '',
+            description: ''
+        }
         arr.push(newObj);
         const idx = arr.length - 1;
         this.setState({ certs: arr }, () => { this['ref' + idx].scrollIntoView({ behavior: 'smooth' }) })

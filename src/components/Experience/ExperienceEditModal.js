@@ -2,13 +2,12 @@ import React from 'react';
 import { cloner } from '../../utils/Utils';
 import { Modal } from '../Modal/Modal';
 
-const print = obj => console.log(JSON.stringify(obj, null, 2))
-
 export class ExperienceEditModal extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
+            originalCompanies: cloner(props.data),
             companies: cloner(props.data)
         };
     }
@@ -21,7 +20,14 @@ export class ExperienceEditModal extends React.Component {
 
     addCompany = () => {
         const arr = cloner(this.state.companies)
-        const newObj = {}
+        const newObj = {
+            title: '',
+            companyName: '',
+            startDate: '',
+            endDate: '',
+            description: '',
+            projects: []
+        }
         arr.push(newObj);
         const idx = arr.length - 1;
         this.setState({ companies: arr }, () => { this['ref' + idx].scrollIntoView({ behavior: 'smooth' }) })
@@ -29,15 +35,18 @@ export class ExperienceEditModal extends React.Component {
 
     removeProject = (companyIdx, projectIdx) => {
         const arr = cloner(this.state.companies);
-        print(arr);
         arr[companyIdx].projects.splice(projectIdx, 1)
-        print(arr);
         this.setState({ companies: arr })
     }
 
     addProject = (companyIdx) => {
         const arr = cloner(this.state.companies)
-        const newObj = {}
+        const newObj = {
+            projectName: '',
+            link: '',
+            date: '',
+            description: ''
+        }
         arr[companyIdx].projects.push(newObj);
         const idx = arr[companyIdx].projects.length - 1;
         this.setState({ companies: arr }, () => { this['ref' + companyIdx + idx].scrollIntoView({ behavior: 'smooth' }) })

@@ -64,7 +64,7 @@ export class ProfileEditModal extends React.Component {
                             <input type='number' name='phone' required value={profileData.phone} onChange={this.handleChange} />
                         </div>
                     </div>
-                    <div class='form-group'>
+                    <div className='form-group'>
                         <div className='form-control'>
 
                             <label htmlFor='city'>City</label>

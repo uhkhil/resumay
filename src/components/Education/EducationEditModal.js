@@ -19,7 +19,14 @@ export class EducationEditModal extends React.Component {
 
     addInstitue = () => {
         const arr = cloner(this.state.institutes)
-        const newObj = {}
+        const newObj = {
+            degreeName: '',
+            instituteName: '',
+            startDate: '',
+            endDate: '',
+            location: '',
+            description: ''
+        }
         arr.push(newObj);
         const idx = arr.length - 1;
         this.setState({ institutes: arr }, () => { this['ref' + idx].scrollIntoView({ behavior: 'smooth' }) })
