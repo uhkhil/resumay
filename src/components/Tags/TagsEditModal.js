@@ -1,6 +1,5 @@
 import React from 'react';
 import { Modal } from '../Modal/Modal';
-import { cloner } from '../../utils/Utils';
 
 export class TagsEditModal extends React.Component {
 
@@ -71,7 +70,7 @@ export class TagsEditModal extends React.Component {
                             <label>Skills</label>
                             <textarea type='text' className='textarea-skills' placeholder='Full stack developer ⏎' rows='1' maxLength='30' onChange={this.handleChange} onKeyUp={this.keyUp} value={typedTag} name='tagName' />
                             <div className='tag-list'>
-                                {tags.map((skill, skillIdx) => <span className='tag clickable' onClick={this.removeSkill.bind(null, skillIdx)}>{skill}</span>)}
+                                {tags.map((skill, skillIdx) => <span key={skillIdx} className='tag clickable' onClick={this.removeSkill.bind(null, skillIdx)}>{skill}</span>)}
                             </div>
                         </div>
                     </div>

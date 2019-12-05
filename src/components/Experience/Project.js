@@ -5,11 +5,11 @@ export class Project extends React.Component {
         const project = this.props.data;
         return (
             <div className='form-block-block'>
-                <a className='subtle-anchor' href={project.projectName} target='_blank' rel='noopener noreferrer'>{project.projectName}</a>
+                <a className='subtle-anchor' href={project.link} target='_blank' rel='noopener noreferrer'>{project.projectName}</a>
                 <br />
                 {
                     project.skills ?
-                        <h5 className='skills-list'>{project.skills.join(', ')}</h5>
+                        <div className='tag-list'>{project.skills.map((skill, id) => <span key={id} className='tag'>{skill}</span>)}</div>
                         : null
                 }
                 <p className='text'>{project.description}</p>

@@ -6,7 +6,12 @@ export class Company extends React.Component {
 
     renderProjects = (projects) => {
         if (projects && projects.length) {
-            return projects.map(project => <Project data={project} />)
+            return (
+                <React.Fragment>
+                    <h2 className='block-header-title'>Projects</h2>
+                    {projects.map((project, id) => <Project key={id} data={project} />)}
+                </React.Fragment>
+            )
         } else return null;
     }
 

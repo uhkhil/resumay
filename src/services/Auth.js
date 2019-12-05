@@ -32,6 +32,7 @@ const login = async () => {
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
         const result = await firebase.auth().signInWithPopup(provider)
         accessToken = result.credential.accessToken;
+        idToken = await firebase.auth().currentUser.getIdToken();
         if (result.additionalUserInfo.isNewUser) {
             const providerId = result.additionalUserInfo.providerId;
             const profile = result.additionalUserInfo.profile;

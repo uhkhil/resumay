@@ -2,6 +2,7 @@ import React from 'react';
 import { BlockHeader } from '../BlockHeader/BlockHeader';
 import { Certificate } from './Certificate';
 import { CertificationEditModal } from './CertificationEditModal';
+import { NoData } from '../NoData/NoData';
 
 export class Certification extends React.Component {
 
@@ -20,6 +21,7 @@ export class Certification extends React.Component {
             <div className="block">
                 <BlockHeader mode={this.props.mode} title="Certification" icon='certificate' edit={this.toggleModal} />
                 {institutes.map((institute, idx) => <Certificate key={idx} data={institute} />)}
+                <NoData condition={institutes.length} />
                 {isOpen ?
                     <CertificationEditModal data={institutes} toggleModal={this.toggleModal} update={this.props.update} />
                     : null}

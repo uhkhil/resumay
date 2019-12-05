@@ -2,6 +2,7 @@ import React from 'react';
 import { BlockHeader } from '../BlockHeader/BlockHeader';
 import { EventsEditModal } from './EventsEditModal';
 import { Event } from './Event';
+import { NoData } from '../NoData/NoData';
 
 export class Events extends React.Component {
 
@@ -20,6 +21,7 @@ export class Events extends React.Component {
             <div className="block">
                 <BlockHeader mode={this.props.mode} title="Events / Awards" icon='trophy' edit={this.toggleModal} />
                 {events.map((institute, idx) => <Event key={idx} data={institute} />)}
+                <NoData condition={events.length} />
                 {
                     isOpen ?
                         <EventsEditModal data={events} toggleModal={this.toggleModal} update={this.props.update} />

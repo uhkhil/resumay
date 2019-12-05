@@ -135,7 +135,7 @@ export class ExperienceEditModal extends React.Component {
                     <label>Skills</label>
                     <textarea type='text' className='textarea-skills' placeholder='React Native ⏎' rows='1' maxLength='30' onChange={this.handleChange} onKeyUp={ev => this.keyUp(ev, compIdx, idx)} value={project.skillName} data-id={idx} data-compid={compIdx} name='skillName' />
                     <div className='tag-list'>
-                        {project.skills.map((skill, skillIdx) => <span className='tag clickable' onClick={this.removeSkill.bind(null, compIdx, idx, skillIdx)}>{skill}</span>)}
+                        {project.skills.map((skill, skillIdx) => <span key={skillIdx} className='tag clickable' onClick={this.removeSkill.bind(null, compIdx, idx, skillIdx)}>{skill}</span>)}
                     </div>
                 </div>
             </div>

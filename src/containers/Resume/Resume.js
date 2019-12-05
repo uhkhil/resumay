@@ -173,26 +173,45 @@ export class Resume extends React.Component {
         )
     }
 
+
+
     render() {
-        const { isOpen } = this.state;
+        const { isOpen, profileData, tags, bio, experiences, education, certifications, events } = this.state;
+        const { mode } = this.props;
         return (
             <div className="resume-container">
                 {
-                    this.props.mode === MODES.EDIT ? this.renderHeader() : null
+                    mode === MODES.EDIT ? this.renderHeader() : null
                 }
                 {
                     !this.state.loading ?
                         <div className="row" style={{ flexWrap: 'wrap' }}>
                             <div className="f3">
-                                <Profile mode={this.props.mode} data={this.state.profileData} update={this.update} />
-                                <Tags mode={this.props.mode} data={this.state.tags} update={this.update} />
+                                <Profile mode={mode} data={profileData} update={this.update} />
+                                <Tags mode={mode} data={tags} update={this.update} />
                             </div>
                             <div className="f8">
-                                <Bio mode={this.props.mode} data={this.state.bio} update={this.update} />
-                                <Experience mode={this.props.mode} data={this.state.experiences} update={this.update} />
-                                <Education mode={this.props.mode} data={this.state.education} update={this.update} />
-                                <Certification mode={this.props.mode} data={this.state.certifications} update={this.update} />
-                                <Events mode={this.props.mode} data={this.state.events} update={this.update} />
+                                <Bio mode={mode} data={bio} update={this.update} />
+                                {
+                                    !experiences.length && mode === MODES.VIEW ?
+                                        null :
+                                        <Experience mode={mode} data={experiences} update={this.update} />
+                                }
+                                {
+                                    !education.length && mode === MODES.VIEW ?
+                                        null :
+                                        <Education mode={mode} data={education} update={this.update} />
+                                }
+                                {
+                                    !certifications.length && mode === MODES.VIEW ?
+                                        null :
+                                        <Certification mode={mode} data={certifications} update={this.update} />
+                                }
+                                {
+                                    !events.length && mode === MODES.VIEW ?
+                                        null :
+                                        <Events mode={mode} data={events} update={this.update} />
+                                }
                             </div>
                         </div>
                         : this.renderLoading()

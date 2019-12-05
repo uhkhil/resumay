@@ -14,18 +14,22 @@ export class Tags extends React.Component {
 
     render() {
         const tags = this.props.data;
+        const { mode, update } = this.props;
         const { isOpen } = this.state;
         return (
             <div className="block">
-                <BlockHeader mode={this.props.mode} title="Highlights" edit={this.toggleModal} />
+                <BlockHeader mode={mode} title="Highlights" edit={this.toggleModal} />
                 <div className='block-content'>
-                    <div className='tag-list'>
-                        {tags.map(tag => <span className='tag'>{tag}</span>)}
-                    </div>
+                    {
+                        tags.length ?
+                            <div className='tag-list'>
+                                {tags.map((tag, id) => <span key={id} className='tag'>{tag}</span>)}
+                            </div> : null
+                    }
                 </div>
                 {
                     isOpen ?
-                        <TagsEditModal data={tags} toggleModal={this.toggleModal} update={this.props.update} />
+                        <TagsEditModal data={tags} toggleModal={this.toggleModal} update={update} />
                         : null
                 }
             </div>

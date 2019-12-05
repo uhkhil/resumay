@@ -77,28 +77,21 @@ export class ProfileEditModal extends React.Component {
                         </div>
                     </div>
                     <div className='form-group'>
-
                         <div className='form-control'>
-
                             <label htmlFor='email'>Email*</label>
                             <input type='email' name='email' required value={profileData.email} onChange={this.handleChange} />
                         </div>
-
-
                         <div className='form-control'>
-
                             <label htmlFor='phone'>Phone*</label>
                             <input type='number' name='phone' required value={profileData.phone} onChange={this.handleChange} />
                         </div>
                     </div>
                     <div className='form-group'>
                         <div className='form-control'>
-
                             <label htmlFor='city'>City*</label>
                             <input type='text' maxLength='30' name='city' required value={profileData.city} onChange={this.handleChange} />
                         </div>
                         <div className='form-control'>
-
                             <label htmlFor='country'>Country*</label>
                             <input type='text' maxLength='30' name='country' required value={profileData.country} onChange={this.handleChange} />
                         </div>
