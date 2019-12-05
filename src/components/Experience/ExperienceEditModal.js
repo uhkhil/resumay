@@ -64,11 +64,15 @@ export class ExperienceEditModal extends React.Component {
 
     handleChange = (e) => {
         const target = e.target;
-        const id = parseInt(target.dataset.id);
+        const id = target.dataset.id
         const compid = parseInt(target.dataset.compid);
+        let projectId;
+        if (id !== undefined) {
+            projectId = parseInt(id)
+        }
         const companies = cloner(this.state.companies);
-        if (compid !== undefined) {
-            companies[compid].projects[id][target.name] = target.value;
+        if (projectId !== undefined) {
+            companies[compid].projects[projectId][target.name] = target.value;
         } else {
             companies[compid][target.name] = target.value;
         }
@@ -115,6 +119,12 @@ export class ExperienceEditModal extends React.Component {
                     <div className='form-control'>
                         <label>Company</label>
                         <input type='text' value={company.companyName} onChange={this.handleChange} data-compid={idx} name='companyName' />
+                    </div>
+                </div>
+                <div className='form-group'>
+                    <div className='form-control'>
+                        <label>Location</label>
+                        <input type='text' required value={company.location} onChange={this.handleChange} data-compid={idx} name='location' />
                     </div>
                 </div>
                 <div className='form-group'>

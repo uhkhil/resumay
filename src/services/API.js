@@ -16,11 +16,11 @@ axios.interceptors.request.use(config => {
     return Promise.reject(error);
 })
 
-// TODO: Add interceptor for non 401 calls
+// TODO: Add interceptor for 401 calls and logout / handle it
 
 const fetchResume = (userId) => axios.get(baseUrl + endpoints.resume, { params: { userId } })
-const createResume = (userId, data) => axios.post(baseUrl + endpoints.resume, data, { params: { userId } })
-const updateResume = (userId, data) => axios.patch(baseUrl + endpoints.resume, data, { params: { userId } })
+const createResume = (data) => axios.post(baseUrl + endpoints.resume, data)
+const updateResume = (data) => axios.patch(baseUrl + endpoints.resume, data)
 
 export const API = {
     fetchResume,

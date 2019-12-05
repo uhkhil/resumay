@@ -8,14 +8,18 @@ export class Landing extends React.Component {
         loading: false
     }
 
-    login = async () => {
+    start = async () => {
         this.setState({ loading: true })
-        const loggedIn = await Auth.login();
+        const alreadyLoggedIn = Auth.checkSession();
+        let loggedIn;
+        if (!alreadyLoggedIn) {
+            loggedIn = await Auth.login();
+        }
+        await Auth.setSession();
         this.setState({ loading: false })
-        if (loggedIn) {
+        if (alreadyLoggedIn || loggedIn) {
             this.props.history.push('/creator');
         }
-
     }
 
     render() {
@@ -24,7 +28,7 @@ export class Landing extends React.Component {
                 <h3 className='landing-title'>Resumay</h3>
                 <h4 className='landing-subtitle'>Go paperless. Share you profile with the world.</h4>
                 <br />
-                <button onClick={this.login} disabled={this.state.loading}>
+                <button onClick={this.start} disabled={this.state.loading}>
                     {!this.state.loading ?
                         'Get started!' : 'Loading...'
                     }

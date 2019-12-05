@@ -15,11 +15,15 @@ const subcribeAuthStateChange = () => {
             loggedIn = false;
         }
     })
-
 }
 
 const checkSession = () => {
     return loggedIn;
+}
+
+const setSession = async () => {
+    idToken = await firebase.auth().currentUser.getIdToken();
+    return true;
 }
 
 const login = async () => {
@@ -27,14 +31,11 @@ const login = async () => {
         const provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
         const result = await firebase.auth().signInWithPopup(provider)
-        console.log('TCL: login -> result', result);
         accessToken = result.credential.accessToken;
-        idToken = result.credential.idToken;
-        const user = result.user;
         if (result.additionalUserInfo.isNewUser) {
             const providerId = result.additionalUserInfo.providerId;
             const profile = result.additionalUserInfo.profile;
-            await API.createResume(user.uid, { providerId, profile });
+            await API.createResume({ providerId, profile });
         }
         return true;
     } catch (err) {
@@ -44,8 +45,12 @@ const login = async () => {
 }
 
 const logout = async () => {
-    await firebase.auth().signOut()
-    return true;
+    try {
+        await firebase.auth().signOut()
+        return true;
+    } catch (error) {
+        return false;
+    }
 }
 
 const user = () => firebase.auth().currentUser;
@@ -55,6 +60,7 @@ const getToken = () => ({ accessToken, idToken })
 export const Auth = {
     subcribeAuthStateChange,
     checkSession,
+    setSession,
     login,
     logout,
     user,

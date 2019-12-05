@@ -73,31 +73,36 @@ export class Resume extends React.Component {
     }
 
     update = async data => {
-        const userId = this.userId;
-        const result = await API.updateResume(userId, data);
-        if (result.data && result.data.status) {
-            if (data.image) {
-                this.setState({ profileData: data })
+        try {
+            const result = await API.updateResume(data);
+            if (result.data && result.data.status) {
+                if (data.image) {
+                    this.setState({ profileData: data })
+                }
+                if (data.bio) {
+                    this.setState({ bio: data.bio })
+                }
+                if (data.experiences) {
+                    this.setState({ experiences: data.experiences })
+                }
+                if (data.education) {
+                    this.setState({ education: data.education })
+                }
+                if (data.certifications) {
+                    this.setState({ certifications: data.certifications })
+                }
+                if (data.events) {
+                    this.setState({ events: data.events })
+                }
+            } else {
+                alert('Something went wrong. Could not update resume');
             }
-            if (data.bio) {
-                this.setState({ bio: data.bio })
-            }
-            if (data.experiences) {
-                this.setState({ experiences: data.experiences })
-            }
-            if (data.education) {
-                this.setState({ education: data.education })
-            }
-            if (data.certifications) {
-                this.setState({ certifications: data.certifications })
-            }
-            if (data.events) {
-                this.setState({ events: data.events })
-            }
-        } else {
-            alert('Something went wrong. Could not update resume');
+            return true;
+        } catch (err) {
+            console.error(err);
+            return false;
         }
-        return true;
+
     }
 
     logout = async () => {

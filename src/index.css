@@ -326,6 +326,14 @@ textarea {
   width: 100%;
 }
 
+/* input:valid {
+  border: 2px solid green;
+} */
+
+/* input:invalid {
+  border: 2px solid red;
+} */
+
 .form-block {
   border: 2px solid gray;
   border-radius: 5px;

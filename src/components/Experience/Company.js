@@ -20,6 +20,7 @@ export class Company extends React.Component {
                 </div>
                 <div className='block-subtitle-container'>
                     <span className='block-subtitle' >{company.companyName}</span>
+                    <span className='text'><i className="fa fa-map-marker"></i> {company.location}</span>
                 </div>
                 {company.description ?
                     <p className='text'>{company.description}</p> : null

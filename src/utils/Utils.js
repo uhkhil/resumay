@@ -1,17 +1,20 @@
-export const JSONifyFormData = (formData) => {
-    const obj = {}
-    for (let pair of formData.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
-        obj[pair[0]] = pair[1]
+export const cloner = obj => {
+    try {
+        return JSON.parse(JSON.stringify(obj))
+    } catch (error) {
+        console.error(error);
+        return null;
     }
-    return obj;
 }
 
-export const cloner = obj => JSON.parse(JSON.stringify(obj));
-
 export const humanifyDate = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const monthString = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date)
-    return monthString + ' ' + year;
+    try {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const monthString = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date)
+        return monthString + ' ' + year;
+    } catch (error) {
+        console.error(error);
+        return '';
+    }
 }
