@@ -1,5 +1,5 @@
 import React from 'react';
-import { cloner } from '../../utils/Utils';
+import { cloner, now } from '../../utils/Utils';
 import { Modal } from '../Modal/Modal';
 
 export class EventsEditModal extends React.Component {
@@ -7,6 +7,7 @@ export class EventsEditModal extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            loading: false,
             events: cloner(props.data)
         };
     }
@@ -30,7 +31,12 @@ export class EventsEditModal extends React.Component {
         this.setState({ events: arr }, () => { this['ref' + idx].scrollIntoView({ behavior: 'smooth' }) })
     }
 
-    submit = async () => {
+    trySubmit = async () => {
+        this.submitButton.click();
+    }
+
+    submit = async ev => {
+        ev.preventDefault();
         const data = this.state.events;
         this.setState({ loading: true });
         const updated = await this.props.update({ events: data });
@@ -54,24 +60,24 @@ export class EventsEditModal extends React.Component {
                 <span className='button-remove' onClick={this.removeEvent.bind(null, idx)}><i className='fa fa-times'></i></span>
                 <div className='form-group'>
                     <div className='form-control'>
-                        <label>Event / Award</label>
-                        <input type='text' required value={event.eventName} onChange={this.handleChange} data-id={idx} name='eventName' />
+                        <label>Event / Award*</label>
+                        <input type='text' maxLength='30' required value={event.eventName} onChange={this.handleChange} data-id={idx} name='eventName' />
                     </div>
                     <div className='form-control'>
-                        <label>Institute</label>
-                        <input type='text' value={event.instituteName} onChange={this.handleChange} data-id={idx} name='instituteName' />
+                        <label>Institute*</label>
+                        <input type='text' maxLength='30' required value={event.instituteName} onChange={this.handleChange} data-id={idx} name='instituteName' />
                     </div>
                 </div>
                 <div className='form-group'>
                     <div className='form-control'>
-                        <label>Date</label>
-                        <input type='date' required value={event.date} onChange={this.handleChange} data-id={idx} name='date' />
+                        <label>Date*</label>
+                        <input type='date' max={now()} required value={event.date} onChange={this.handleChange} data-id={idx} name='date' />
                     </div>
                 </div>
                 <div className='form-group'>
                     <div className='form-control'>
                         <label>Description</label>
-                        <textarea value={event.description} onChange={this.handleChange} data-id={idx} name='description' />
+                        <textarea maxLength='500' value={event.description} onChange={this.handleChange} data-id={idx} name='description' />
                     </div>
                 </div>
             </div>
@@ -79,13 +85,14 @@ export class EventsEditModal extends React.Component {
     }
 
     render = () => {
-        const { events } = this.state;
+        const { events, loading } = this.state;
         const { isOpen, toggleModal } = this.props;
         return (
-            <Modal title='Events / Awards' isOpen={isOpen} submit={this.submit} close={toggleModal}>
-                <form className='form'>
+            <Modal title='Events / Awards' isOpen={isOpen} submit={this.trySubmit} submitting={loading} close={toggleModal}>
+                <form className='form' onSubmit={this.submit}>
                     <button type='button' className='button button-primary button-add' onClick={this.addEvent}>Add Event</button>
                     {events.map((ins, idx) => this.renderEventForm(ins, idx))}
+                    <button ref={ev => this.submitButton = ev} className='button-submit'>Submit</button>
                 </form>
             </Modal>
         )

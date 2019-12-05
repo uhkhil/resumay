@@ -20,7 +20,9 @@ export class Certification extends React.Component {
             <div className="block">
                 <BlockHeader mode={this.props.mode} title="Certification" icon='certificate' edit={this.toggleModal} />
                 {institutes.map((institute, idx) => <Certificate key={idx} data={institute} />)}
-                <CertificationEditModal data={institutes} isOpen={isOpen} toggleModal={this.toggleModal} update={this.props.update} />
+                {isOpen ?
+                    <CertificationEditModal data={institutes} toggleModal={this.toggleModal} update={this.props.update} />
+                    : null}
             </div>
         )
     }

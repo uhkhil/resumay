@@ -20,7 +20,11 @@ export class Experience extends React.Component {
             <div className="block">
                 <BlockHeader mode={this.props.mode} title="Work Experience" icon='briefcase' edit={this.toggleModal} />
                 {companies.map((company, idx) => <Company key={idx} data={company} />)}
-                <ExperienceEditModal data={companies} isOpen={isOpen} toggleModal={this.toggleModal} update={this.props.update} />
+                {
+                    isOpen ?
+                        <ExperienceEditModal data={companies} toggleModal={this.toggleModal} update={this.props.update} />
+                        : null
+                }
             </div>
         )
     }

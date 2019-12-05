@@ -20,7 +20,12 @@ export class Events extends React.Component {
             <div className="block">
                 <BlockHeader mode={this.props.mode} title="Events / Awards" icon='trophy' edit={this.toggleModal} />
                 {events.map((institute, idx) => <Event key={idx} data={institute} />)}
-                <EventsEditModal data={events} isOpen={isOpen} toggleModal={this.toggleModal} update={this.props.update} />
+                {
+                    isOpen ?
+                        <EventsEditModal data={events} toggleModal={this.toggleModal} update={this.props.update} />
+                        : null
+
+                }
             </div>
         )
     }

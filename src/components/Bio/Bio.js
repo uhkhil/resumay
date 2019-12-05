@@ -21,7 +21,11 @@ export class Bio extends React.Component {
                 <div className='block-content'>
                     <p className='text'>{this.props.data}</p>
                 </div>
-                <BioEditModal data={events} isOpen={isOpen} toggleModal={this.toggleModal} update={this.props.update} />
+                {
+                    isOpen ?
+                        <BioEditModal data={events} toggleModal={this.toggleModal} update={this.props.update} />
+                        : null
+                }
             </div>
         )
     }

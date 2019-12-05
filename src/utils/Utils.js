@@ -18,3 +18,16 @@ export const humanifyDate = (dateString) => {
         return '';
     }
 }
+
+const doubleDigit = (num) => {
+    if (num < 10) {
+        return '0' + num;
+    } return num;
+}
+
+export const now = () => {
+    const date = new Date();
+    const dateString = date.getFullYear() + '-' + doubleDigit(date.getMonth()) + '-' + doubleDigit(date.getDate())
+    // const dateString = '2019-12-05'
+    return dateString;
+}

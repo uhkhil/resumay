@@ -330,9 +330,13 @@ textarea {
   border: 2px solid green;
 } */
 
-/* input:invalid {
-  border: 2px solid red;
-} */
+input:invalid {
+  border: 1px solid red;
+}
+
+textarea:invalid {
+  border: 1px solid red;
+}
 
 .form-block {
   border: 2px solid gray;
@@ -353,6 +357,10 @@ textarea {
   /* float: right;
   color: red;
   font-size: larger; */
+}
+
+.form>.button-submit {
+  display: none;
 }
 
 .form-block-block {

@@ -6,11 +6,13 @@ export class BioEditModal extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            bio: props.data
+            bio: props.data,
+            loading: false
         };
     }
 
-    submit = async () => {
+    submit = async ev => {
+        ev.preventDefault();
         const { bio } = this.state;
         this.setState({ loading: true });
         const updated = await this.props.update({ bio });
@@ -20,6 +22,10 @@ export class BioEditModal extends React.Component {
         }
     }
 
+    trySubmit = async () => {
+        this.submitButton.click();
+    }
+
     handleChange = (e) => {
         const target = e.target;
         const bio = target.value;
@@ -27,22 +33,24 @@ export class BioEditModal extends React.Component {
     }
 
     render = () => {
+        const { loading } = this.state;
         const { isOpen, toggleModal } = this.props;
         return (
-            <Modal title='Profile Overview' isOpen={isOpen} submit={this.submit} close={toggleModal}>
-                <form className='form'>
+            <Modal title='Profile Overview' isOpen={isOpen} submit={this.trySubmit} submitting={loading} close={toggleModal}>
+                <form className='form' onSubmit={this.submit}>
                     <div className='form-group'>
                         <div className='form-control'>
-                            <label>Description</label>
+                            <label>Description*</label>
                             <textarea
-                                minLength={10}
-                                maxLength={500}
+                                required
+                                maxLength='500'
                                 value={this.state.bio}
                                 onChange={this.handleChange}
-                                rows={5}
+                                rows='5'
                                 name='description' />
                         </div>
                     </div>
+                    <button ref={ev => this.submitButton = ev} className='button-submit'>Submit</button>
                 </form>
             </Modal>
         )

@@ -3,21 +3,10 @@ import './Modal.css'
 
 
 export class Modal extends React.Component {
-
-    state = {
-        submitting: false
-    }
-
-    submit = async () => {
-        this.setState({ submitting: true })
-        await this.props.submit();
-        this.setState({ submitting: false })
-    }
-
     render() {
-        const className = this.props.isOpen ? 'modal-open' : ''
+        const { submitting, submit } = this.props;
         return (
-            <div className={"modal " + className}>
+            <div className="modal modal-open">
                 <div className="modal-inner">
                     <div className="modal-content">
                         <h2>{this.props.title}</h2>
@@ -30,8 +19,8 @@ export class Modal extends React.Component {
                             <button className="button close-modal" onClick={this.props.close}>Cancel</button>
                             <button
                                 className="button button-primary close-modal"
-                                onClick={this.submit}
-                                disabled={this.state.submitting}>{!this.state.submitting ? 'Update' : 'Submitting...'}</button>
+                                onClick={submit}
+                                disabled={submitting}>{!submitting ? 'Update' : 'Updating...'}</button>
                         </div>
                     </div>
                 </div>

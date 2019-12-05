@@ -20,7 +20,11 @@ export class Education extends React.Component {
             <div className="block">
                 <BlockHeader mode={this.props.mode} title="Education" icon='graduation-cap' edit={this.toggleModal} />
                 {institutes.map((institute, idx) => <Institute key={idx} data={institute} />)}
-                <EducationEditModal data={institutes} isOpen={isOpen} toggleModal={this.toggleModal} update={this.props.update} />
+                {
+                    isOpen ?
+                        <EducationEditModal data={institutes} toggleModal={this.toggleModal} update={this.props.update} />
+                        : null
+                }
             </div>
         )
     }

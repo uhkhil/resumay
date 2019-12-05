@@ -33,7 +33,11 @@ export class Profile extends React.Component {
                     <a href={'tel:' + data.phone} className='p0 m0 text subtle-anchor'><i className="fa fa-phone"></i> {data.phone}</a><br />
                     <span className='p0 m0 text'><i className="fa fa-map-marker"></i> {data.city}, {data.country}</span><br />
                 </div>
-                <ProfileEditModal data={data} isOpen={isOpen} toggleModal={this.toggleModal} update={this.props.update} />
+                {
+                    isOpen ?
+                        <ProfileEditModal data={data} toggleModal={this.toggleModal} update={this.props.update} />
+                        : null
+                }
             </div>
         )
     }
