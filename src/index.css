@@ -376,3 +376,15 @@ textarea:invalid {
   font-size: medium;
   font-weight: 300;
 }
+
+.fa-pencil {
+  cursor: pointer;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  opacity: 0.5;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal } from '../Modal/Modal';
+import { cloudinary } from '../../secrets';
 
 export class ProfileEditModal extends React.Component {
 
@@ -8,6 +9,28 @@ export class ProfileEditModal extends React.Component {
         this.state = {
             profileData: props.data
         };
+        this.initializeWidget();
+    }
+
+    initializeWidget = () => {
+        this.widget = window.cloudinary.createUploadWidget({
+            cloudName: cloudinary.cloudName,
+            uploadPreset: cloudinary.uploadPreset,
+            multiple: false,
+            cropping: true,
+            croppingAspectRatio: 1,
+            showSkipCropButton: false,
+            resourceType: 'image'
+        }, (error, result) => {
+            if (!error && result && result.event === "success") {
+                this.setState({ profileData: { ...this.state.profileData, image: result.info.secure_url } })
+            }
+        }
+        )
+    }
+
+    openWidget = () => {
+        this.widget.open();
     }
 
     trySubmit = async () => {
@@ -40,8 +63,7 @@ export class ProfileEditModal extends React.Component {
                 <form onSubmit={this.submit} className='form'>
                     <div className='form-group'>
                         <div className='form-control'>
-                            <label htmlFor='image'>Image</label>
-                            <input type='text' maxLength='30' name='image' required value={profileData.image} onChange={this.handleChange} />
+                            <img src={profileData.image} className='profile-image clickable' alt='profile' onClick={this.openWidget}></img>
                         </div>
                     </div>
                     <div className='form-group'>
