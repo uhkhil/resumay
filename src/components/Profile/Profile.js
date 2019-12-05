@@ -30,8 +30,19 @@ export class Profile extends React.Component {
                 <hr />
                 <div className='block-content'>
                     <a href={'mailto:' + data.email} className='p0 m0 text subtle-anchor'><i className="fa fa-envelope"></i> {data.email}</a><br />
-                    <a href={'tel:' + data.phone} className='p0 m0 text subtle-anchor'><i className="fa fa-phone"></i> {data.phone}</a><br />
-                    <span className='p0 m0 text'><i className="fa fa-map-marker"></i> {data.city}, {data.country}</span><br />
+                    {
+                        data.phone ?
+                            <React.Fragment>
+                                <a href={'tel:' + data.phone} className='p0 m0 text subtle-anchor'><i className="fa fa-phone"></i> {data.phone}</a> <br />
+                            </React.Fragment>
+                            : null
+                    }
+                    {
+                        data.city || data.country ?
+                            <React.Fragment>
+                                <span className='p0 m0 text'><i className="fa fa-map-marker"></i> {data.city}, {data.country}</span><br />
+                            </React.Fragment> : null
+                    }
                 </div>
                 {
                     isOpen ?

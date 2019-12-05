@@ -1,24 +1,33 @@
-import React from 'react'
-import './Tags.css'
-import { Tag } from '../Tag/Tag'
-import { BlockHeader } from '../BlockHeader/BlockHeader'
+import React from 'react';
+import { BlockHeader } from '../BlockHeader/BlockHeader';
+import { TagsEditModal } from './TagsEditModal';
 
 export class Tags extends React.Component {
+
+    state = {
+        isOpen: false
+    }
+
+    toggleModal = () => {
+        this.setState({ isOpen: !this.state.isOpen })
+    }
+
     render() {
-        const tags = [{
-            _id: '1',
-            value: 'Angular'
-        },
-        {
-            _id: '2',
-            value: 'React Native'
-        }];
+        const tags = this.props.data;
+        const { isOpen } = this.state;
         return (
-            <div className="block tags-container">
-                <BlockHeader title='Highlights' edit={() => alert('Coming soon.')} />
+            <div className="block">
+                <BlockHeader mode={this.props.mode} title="Highlights" edit={this.toggleModal} />
                 <div className='block-content'>
-                    {tags.map((tag, idx) => <Tag key={idx} _id={tag._id} value={tag.value} />)}
+                    <div className='tag-list'>
+                        {tags.map(tag => <span className='tag'>{tag}</span>)}
+                    </div>
                 </div>
+                {
+                    isOpen ?
+                        <TagsEditModal data={tags} toggleModal={this.toggleModal} update={this.props.update} />
+                        : null
+                }
             </div>
         )
     }

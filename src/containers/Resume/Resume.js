@@ -84,6 +84,9 @@ export class Resume extends React.Component {
                 if (data.bio) {
                     this.setState({ bio: data.bio })
                 }
+                if (data.tags) {
+                    this.setState({ tags: data.tags })
+                }
                 if (data.experiences) {
                     this.setState({ experiences: data.experiences })
                 }

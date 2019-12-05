@@ -400,6 +400,13 @@ textarea:invalid {
   margin-top: 10px;
 }
 
+.tag {
+  background-color: #f2f6fa;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
 .textarea-skills {
   min-height: 20px;
   height: inherit;
