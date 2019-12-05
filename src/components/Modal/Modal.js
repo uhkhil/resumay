@@ -17,10 +17,14 @@ export class Modal extends React.Component {
                         <hr className="modal-buttons-seperator" />
                         <div className="modal-buttons">
                             <button className="button close-modal" onClick={this.props.close}>Cancel</button>
-                            <button
-                                className="button button-primary close-modal"
-                                onClick={submit}
-                                disabled={submitting}>{!submitting ? 'Update' : 'Updating...'}</button>
+                            {
+                                submit ?
+                                    <button
+                                        className="button button-primary close-modal"
+                                        onClick={submit}
+                                        disabled={submitting}>{!submitting ? 'Update' : 'Updating...'}</button>
+                                    : null
+                            }
                         </div>
                     </div>
                 </div>

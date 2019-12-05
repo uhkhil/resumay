@@ -11,6 +11,7 @@ import { Auth } from '../../services/Auth';
 import { MODES } from '../../components/constants/Mode';
 import { Certification } from '../../components/Certification/Certification';
 import { Events } from '../../components/Events/Events';
+import { Modal } from '../../components/Modal/Modal';
 
 export class Resume extends React.Component {
 
@@ -22,7 +23,8 @@ export class Resume extends React.Component {
         education: [],
         certifications: [],
         events: [],
-        loading: true
+        loading: true,
+        isOpen: false,
     }
 
     constructor(props) {
@@ -125,12 +127,21 @@ export class Resume extends React.Component {
         this.props.history.push('/view/' + this.userId);
     }
 
+    share = () => {
+        this.toggleModal();
+    }
+
+    toggleModal = () => {
+        this.setState({ isOpen: !this.state.isOpen })
+    }
+
     renderHeader = () => {
         return (
             <header className='row aic jcsb'>
                 <h4 className='header-title'>Resumay</h4>
                 <div className='header-button-group'>
                     <button className="button-primary header-button" onClick={this.view}>View</button>
+                    <button className="button-primary header-button" onClick={this.share}>Share</button>
                     {/* <button className="button-primary header-button" onClick={this.download}>Download</button> */}
                     <button className="button-primary header-button" onClick={this.logout}>Logout</button>
                 </div>
@@ -146,7 +157,24 @@ export class Resume extends React.Component {
         )
     }
 
+    copy = () => {
+        this.linkInput.select();
+        document.execCommand("copy");
+    }
+
+    renderShareModal = () => {
+        return (
+            <Modal title='Share this link with others' close={this.toggleModal}>
+                <div className='block-share'>
+                    <input readOnly ref={ev => this.linkInput = ev} type='text' value={'https://uhkhil-resumay.web.app/view/' + this.userId} id='link' />
+                    <button className='button button-primary' onClick={this.copy}>Copy</button>
+                </div>
+            </Modal>
+        )
+    }
+
     render() {
+        const { isOpen } = this.state;
         return (
             <div className="resume-container">
                 {
@@ -168,6 +196,9 @@ export class Resume extends React.Component {
                             </div>
                         </div>
                         : this.renderLoading()
+                }
+                {
+                    isOpen ? this.renderShareModal() : null
                 }
             </div>
         )

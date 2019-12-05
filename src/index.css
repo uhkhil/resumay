@@ -339,7 +339,7 @@ textarea:invalid {
 }
 
 .form-block {
-  border: 2px solid gray;
+  border: 1px solid gray;
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
@@ -352,7 +352,7 @@ textarea:invalid {
 }
 
 .form>.button-add {
-  width: 300px;
+  width: 200px;
   margin: 10px;
   /* float: right;
   color: red;
@@ -410,4 +410,10 @@ textarea:invalid {
 .textarea-skills {
   min-height: 20px;
   height: inherit;
+}
+
+.image-editor {
+  display: flex;
+  margin-bottom: 30px;
+  justify-content: center;
 }

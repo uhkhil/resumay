@@ -148,7 +148,7 @@ export class ExperienceEditModal extends React.Component {
             <div className='form-group'>
                 <div className='form-control'>
                     <label>Description</label>
-                    <textarea maxLength='500' value={project.description} onChange={this.handleChange} data-id={idx} data-compid={compIdx} name='description' />
+                    <textarea maxLength='500' value={project.description} onChange={this.handleChange} data-id={idx} data-compid={compIdx} name='description' placeholder='The product helped million people get online...' />
                 </div>
             </div>
         </div>
@@ -161,7 +161,7 @@ export class ExperienceEditModal extends React.Component {
                 <div className='form-group'>
                     <div className='form-control'>
                         <label>Title*</label>
-                        <input type='text' maxLength='30' required value={company.title} onChange={this.handleChange} data-compid={idx} name='title' />
+                        <input type='text' maxLength='30' required value={company.title} onChange={this.handleChange} data-compid={idx} name='title' placeholder='Team Lead' />
                     </div>
                     <div className='form-control'>
                         <label>Company*</label>
@@ -171,7 +171,7 @@ export class ExperienceEditModal extends React.Component {
                 <div className='form-group'>
                     <div className='form-control'>
                         <label>Location*</label>
-                        <input type='text' maxLength='30' required value={company.location} onChange={this.handleChange} data-compid={idx} name='location' />
+                        <input type='text' maxLength='30' required value={company.location} onChange={this.handleChange} data-compid={idx} name='location' placeholder='Pune, India' />
                     </div>
                 </div>
                 <div className='form-group'>
@@ -187,7 +187,7 @@ export class ExperienceEditModal extends React.Component {
                 <div className='form-group'>
                     <div className='form-control'>
                         <label>Description</label>
-                        <textarea maxLength='500' value={company.description} onChange={this.handleChange} data-compid={idx} name='description' />
+                        <textarea maxLength='500' value={company.description} onChange={this.handleChange} data-compid={idx} name='description' placeholder='Leaded a team of developers to...' />
                     </div>
                 </div>
                 <div className='form'>
@@ -202,7 +202,7 @@ export class ExperienceEditModal extends React.Component {
         const { companies, loading } = this.state;
         const { isOpen, toggleModal } = this.props;
         return (
-            <Modal title='Companies' isOpen={isOpen} submit={this.trySubmit} submitting={loading} close={toggleModal}>
+            <Modal title='Work Experience' isOpen={isOpen} submit={this.trySubmit} submitting={loading} close={toggleModal}>
                 <form className='form' onSubmit={this.submit}>
                     <button type='button' className='button button-primary button-add' onClick={this.addCompany}>Add Company</button>
                     {companies.map((company, idx) => this.renderCompanyForm(company, idx))}

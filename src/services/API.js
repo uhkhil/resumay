@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { Auth } from './Auth';
 
-const baseUrl = 'http://localhost:8000'
-// const baseUrl = 'https://resumay.herokuapp.com'
+const baseUrl = 'https://resumay.herokuapp.com'
 const endpoints = {
     resume: '/resume'
 }

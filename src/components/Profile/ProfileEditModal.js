@@ -62,7 +62,7 @@ export class ProfileEditModal extends React.Component {
             <Modal title='Profile' isOpen={isOpen} submit={this.trySubmit} submitting={loading} close={toggleModal}>
                 <form onSubmit={this.submit} className='form'>
                     <div className='form-group'>
-                        <div className='form-control'>
+                        <div className='form-control image-editor'>
                             <img src={profileData.image} className='profile-image clickable' alt='profile' onClick={this.openWidget}></img>
                         </div>
                     </div>

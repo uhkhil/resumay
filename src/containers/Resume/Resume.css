@@ -67,3 +67,10 @@ header {
     -webkit-transform: rotate(360deg);
   }
 }
+
+.block-share {
+  margin: 50px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
