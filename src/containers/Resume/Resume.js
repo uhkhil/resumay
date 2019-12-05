@@ -13,6 +13,18 @@ import { Certification } from '../../components/Certification/Certification';
 import { Events } from '../../components/Events/Events';
 
 export class Resume extends React.Component {
+
+    state = {
+        profileData: {},
+        tags: [],
+        bio: '',
+        experiences: [],
+        education: [],
+        certifications: [],
+        events: [],
+        loading: true
+    }
+
     constructor(props) {
         super(props);
         // TODO: Figure out way to call this when page called everytime.
@@ -27,16 +39,6 @@ export class Resume extends React.Component {
             this.userId = Auth.user().uid;
         } else {
             this.userId = this.props.match.params.userId;
-        }
-        this.state = {
-            profileData: {},
-            tags: [],
-            bio: '',
-            experiences: [],
-            education: [],
-            certifications: [],
-            events: [],
-            loading: true,
         }
         this.fetchResume();
     }

@@ -388,3 +388,19 @@ textarea:invalid {
 .clickable:hover {
   opacity: 0.5;
 }
+
+/* Tag */
+
+.tag-list {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  flex-wrap: wrap;
+  margin: 20px;
+  margin-top: 10px;
+}
+
+.textarea-skills {
+  min-height: 20px;
+  height: inherit;
+}

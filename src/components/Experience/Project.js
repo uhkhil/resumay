@@ -3,7 +3,6 @@ import React from 'react'
 export class Project extends React.Component {
     render() {
         const project = this.props.data;
-        project.skills = ['React', 'Angular', 'AWS']
         return (
             <div className='form-block-block'>
                 <a className='subtle-anchor' href={project.projectName} target='_blank' rel='noopener noreferrer'>{project.projectName}</a>

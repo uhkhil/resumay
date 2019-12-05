@@ -27,7 +27,8 @@ export class ExperienceEditModal extends React.Component {
             startDate: '',
             endDate: '',
             description: '',
-            projects: []
+            projects: [],
+
         }
         arr.push(newObj);
         const idx = arr.length - 1;
@@ -46,7 +47,9 @@ export class ExperienceEditModal extends React.Component {
             projectName: '',
             link: '',
             date: '',
-            description: ''
+            description: '',
+            skills: [],
+            skillName: ''
         }
         arr[companyIdx].projects.push(newObj);
         const idx = arr[companyIdx].projects.length - 1;
@@ -60,6 +63,7 @@ export class ExperienceEditModal extends React.Component {
     submit = async ev => {
         ev.preventDefault();
         const data = this.state.companies;
+        data.forEach(comp => { comp.projects.forEach(project => { delete project.skillName }) })
         this.setState({ loading: true });
         const updated = await this.props.update({ experiences: data });
         this.setState({ loading: false });
@@ -85,6 +89,33 @@ export class ExperienceEditModal extends React.Component {
         this.setState({ companies })
     }
 
+    addSkill = (compId, projectId) => {
+        const arr = cloner(this.state.companies);
+        const project = arr[compId].projects[projectId]
+        const skillName = project.skillName.trim();
+        if (skillName) {
+            project.skills.push(skillName);
+            project.skillName = ''
+        } else {
+            return;
+        }
+        this.setState({ companies: arr });
+    }
+
+    removeSkill = (compId, projectId, skillId) => {
+        const arr = cloner(this.state.companies);
+        const project = arr[compId].projects[projectId]
+        project.skills.splice(skillId, 1);
+        this.setState({ companies: arr });
+    }
+
+    keyUp = (ev, compIdx, projectIdx) => {
+        const keyCode = ev.keyCode;
+        if (keyCode === 13) {
+            this.addSkill(compIdx, projectIdx)
+        }
+    }
+
     renderProjectForm = (project, compIdx, idx) => (
         <div key={compIdx + idx} className='form-block' ref={el => this['ref' + compIdx + idx] = el}>
             <span className='button-remove' onClick={this.removeProject.bind(null, compIdx, idx)}><i className='fa fa-times'></i></span>
@@ -96,6 +127,16 @@ export class ExperienceEditModal extends React.Component {
                 <div className='form-control'>
                     <label>Project link</label>
                     <input type='text' maxLength='30' value={project.link} onChange={this.handleChange} data-id={idx} data-compid={compIdx} name='link' />
+                </div>
+            </div>
+
+            <div className='form-group'>
+                <div className='form-control'>
+                    <label>Skills</label>
+                    <textarea type='text' className='textarea-skills' placeholder='React Native ⏎' rows='1' maxLength='30' onChange={this.handleChange} onKeyUp={ev => this.keyUp(ev, compIdx, idx)} value={project.skillName} data-id={idx} data-compid={compIdx} name='skillName' />
+                    <div className='tag-list'>
+                        {project.skills.map((skill, skillIdx) => <span className='tag clickable' onClick={this.removeSkill.bind(null, compIdx, idx, skillIdx)}>{skill}</span>)}
+                    </div>
                 </div>
             </div>
             <div className='form-group'>
@@ -124,7 +165,7 @@ export class ExperienceEditModal extends React.Component {
                     </div>
                     <div className='form-control'>
                         <label>Company*</label>
-                        <input type='text' maxLength='30' value={company.companyName} onChange={this.handleChange} data-compid={idx} name='companyName' />
+                        <input type='text' maxLength='30' required value={company.companyName} onChange={this.handleChange} data-compid={idx} name='companyName' />
                     </div>
                 </div>
                 <div className='form-group'>
