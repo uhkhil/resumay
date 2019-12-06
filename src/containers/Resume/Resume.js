@@ -180,6 +180,11 @@ export class Resume extends React.Component {
         const { mode } = this.props;
         return (
             <div className="resume-container">
+                <a href="https://github.com/uhkhil/resumay">
+                    <img width="149" height="149" style={{ position: 'absolute' }}
+                        src="https://github.blog/wp-content/uploads/2008/12/forkme_left_darkblue_121621.png?resize=149%2C149"
+                        className="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1" />
+                </a>
                 {
                     mode === MODES.EDIT ? this.renderHeader() : null
                 }

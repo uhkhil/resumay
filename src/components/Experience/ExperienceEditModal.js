@@ -126,7 +126,7 @@ export class ExperienceEditModal extends React.Component {
                 </div>
                 <div className='form-control'>
                     <label>Project link</label>
-                    <input type='text' maxLength='30' value={project.link} onChange={this.handleChange} data-id={idx} data-compid={compIdx} name='link' />
+                    <input type='text' maxLength='500' value={project.link} onChange={this.handleChange} data-id={idx} data-compid={compIdx} name='link' />
                 </div>
             </div>
 
