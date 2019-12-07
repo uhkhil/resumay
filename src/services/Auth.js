@@ -29,7 +29,6 @@ const setSession = async () => {
 const login = async () => {
     try {
         const provider = new firebase.auth.GoogleAuthProvider();
-        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
         const result = await firebase.auth().signInWithPopup(provider)
         accessToken = result.credential.accessToken;
         idToken = await firebase.auth().currentUser.getIdToken();
